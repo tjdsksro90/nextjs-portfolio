@@ -4,24 +4,24 @@ function Footer() {
   return (
     <footer className="body-font">
       <div>
-        <div className="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
+        <div className="container flex flex-col items-center px-5 py-6 mx-auto sm:flex-row">
           <Link href="/" legacyBehavior>
-            <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+            <a className="flex items-center justify-center font-medium title-font md:justify-start">
               <span className="ml-3 text-xl">윤호준</span>
             </a>
           </Link>
-          <p className="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">
+          <p className="mt-4 text-sm text-gray-500 sm:ml-6 sm:mt-0">
             © 2020 Tailblocks —
             <a
               href="https://twitter.com/knyttneve"
               rel="noopener noreferrer"
-              className="text-gray-600 ml-1"
+              className="ml-1 text-gray-600"
               target="_blank"
             >
               @knyttneve
             </a>
           </p>
-          <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+          <span className="inline-flex justify-center mt-4 sm:ml-auto sm:mt-0 sm:justify-start">
             <a className="text-gray-500">
               <svg
                 fill="currentColor"

@@ -23,15 +23,15 @@ function Header() {
           </a>
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
-          <Link href="/" legacyBehavior>
-            <a className="mr-5">홈</a>
+          <Link className="mr-5" href={"/"}>
+            홈
           </Link>
-          <Link href="/projects" legacyBehavior>
-            <a className="mr-5">프로젝트</a>
+          <Link className="mr-5" href={"/projects"}>
+            프로젝트
           </Link>
-          <a href="/" className="mr-5">
+          <Link className="mr-5" href={"/"}>
             연락하기
-          </a>
+          </Link>
         </nav>
         <ThemeToggle />
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const ProjectItem = ({ data }) => {
   console.log(data);
@@ -49,8 +50,16 @@ const ProjectItem = ({ data }) => {
       <div className="flex flex-col p-4">
         <h1 className="text-2xl font-bold">{title}</h1>
         <h3 className="mt-4 text-xl">{description}</h3>
-        <a href={github}>깃허브 바로가기</a>
-        <a href={youtube}>유튜브 시연영상 보러가기</a>
+        {github && (
+          <Link className="mr-5" href={github}>
+            깃허브 바로가기
+          </Link>
+        )}
+        {youtube && (
+          <Link className="mr-5" href={youtube}>
+            유튜브 시연영상 보러가기
+          </Link>
+        )}
         <p className="my-1 ">
           작업기간 : {start} ~ {end} ({calculatedPeriod(start, end)}일)
         </p>

@@ -19,8 +19,8 @@ function Hero() {
           헌쟌합는다 쟅옹은 문산도록 길비턴힌아려고 다므왈후치게 사쟀지선다.
         </p>
         <div className="flex justify-center">
-          <Link href="/projects" legacyBehavior>
-            <a className="btn-project">프로젝트 보러가기</a>
+          <Link className="btn-project" href={"/projects"}>
+            프로젝트 보러가기
           </Link>
         </div>
       </div>

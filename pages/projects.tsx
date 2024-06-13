@@ -2,9 +2,12 @@ import { getLists } from "@/api/lists";
 import Seo from "@/components/Seo";
 import { DATABASE_ID, TOKEN } from "@/config";
 import axios from "axios";
+import { GetStaticProps } from "next";
 import { useEffect } from "react";
+import ProjectItem from "@/components/projects/project-item";
 
-declare type MovieResultType = {
+interface Rroperties {}
+interface ProjectResultType {
   object: string;
   id: string;
   created_time: Date;
@@ -13,58 +16,84 @@ declare type MovieResultType = {
     object: string;
     id: string;
   };
-};
-
-interface Props {
-  projectNames: MovieResultType[] | undefined;
+  properties: PropertiesType;
 }
 
-function projects() {
-  return (
-    <div className="container">
-      <Seo title="Projects" />
-      <section className="flex min-h-screen flex-col items-center justify-center text-gray-600 body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          {/* {projectNames} */}
-          {/* {projectNames?.map((movie) => {
-            <div key={movie.id}></div>;
-          })} */}
-        </div>
-      </section>
-    </div>
-  );
-}
-
-// 빌드 타임에 호출
-export async function getStaticProps() {
-  // const options = {
-  //   method: "POST",
-  //   headers: {
-  //     accept: "application/json",
-  //     "Notion-Version": "2022-06-28",
-  //     "content-type": "application/json",
-  //     Authorization: `Bearer ${TOKEN}`,
-  //   },
-  //   body: JSON.stringify({ page_size: 100 }),
-  // };
-
-  // const res = await fetch(
-  //   `https://api.notion.com/v1/databases/${DATABASE_ID}/query`,
-  //   options
-  // );
-
-  // const projects = await res.json();
-
-  // const projectNames = projects.results.map((item: any) => {
-  //   item.properties.Name.title;
-  // });
-
-  // console.log(projectNames);
-  return {
-    props: {
-      // projectNames,
-    },
+interface PropertiesType {
+  WorkPeriod: {
+    date: {
+      start: Date;
+      end: Date;
+    };
   };
 }
 
-export default projects;
+interface Props {
+  projectsList: ProjectResultType[];
+}
+
+const Projects = ({ projectsList }: Props) => {
+  console.log(projectsList);
+
+  const sortedProjectsList = projectsList.sort((a, b) => {
+    const startDateA = new Date(a.properties.WorkPeriod.date.start);
+    const startDateB = new Date(b.properties.WorkPeriod.date.start);
+    return startDateA.getTime() - startDateB.getTime();
+  });
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen px-3 mb-10">
+      <Seo title="Projects" />
+
+      <h1 className="text-4xl font-bold sm:text-6xl">
+        총 프로젝트 :
+        <span className="pl-4 text-blue-500">{projectsList.length}</span>
+      </h1>
+
+      <div className="grid grid-cols-1 gap-8 p-12 m-4 md:grid-cols-2">
+        {sortedProjectsList.map(item => (
+          <ProjectItem data={item} />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Projects;
+
+// 빌드 타임에 호출
+export const getStaticProps: GetStaticProps = async () => {
+  const options = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Notion-Version": "2022-06-28",
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${TOKEN}`,
+    },
+    body: JSON.stringify({ page_size: 100 }),
+  };
+  try {
+    const res = await fetch(
+      `https://api.notion.com/v1/databases/${DATABASE_ID}/query`,
+      options
+    );
+
+    const projects = await res.json();
+    const projectsList = projects.results;
+    console.log(projectsList);
+
+    return {
+      props: {
+        projectsList,
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data:", error); // 에러 로그 추가
+    return {
+      props: {
+        projects: [],
+      },
+    };
+  }
+};

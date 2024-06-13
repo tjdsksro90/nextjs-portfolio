@@ -24,12 +24,12 @@ function Header() {
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
           <Link href="/" legacyBehavior>
-            <a className="mr-5 hover:text-gray-900">홈</a>
+            <a className="mr-5">홈</a>
           </Link>
           <Link href="/projects" legacyBehavior>
-            <a className="mr-5 hover:text-gray-900">프로젝트</a>
+            <a className="mr-5">프로젝트</a>
           </Link>
-          <a href="/" className="mr-5 hover:text-gray-900">
+          <a href="/" className="mr-5">
             연락하기
           </a>
         </nav>

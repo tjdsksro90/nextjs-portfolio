@@ -1,9 +1,6 @@
-import { getLists } from "@/api/lists";
 import Seo from "@/components/Seo";
 import { DATABASE_ID, TOKEN } from "@/config";
-import axios from "axios";
 import { GetStaticProps } from "next";
-import { useEffect } from "react";
 import ProjectItem from "@/components/projects/project-item";
 
 interface Rroperties {}
@@ -33,8 +30,6 @@ interface Props {
 }
 
 const Projects = ({ projectsList }: Props) => {
-  console.log(projectsList);
-
   const sortedProjectsList = projectsList.sort((a, b) => {
     const startDateA = new Date(a.properties.WorkPeriod.date.start);
     const startDateB = new Date(b.properties.WorkPeriod.date.start);
@@ -81,7 +76,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
     const projects = await res.json();
     const projectsList = projects.results;
-    console.log(projectsList);
 
     return {
       props: {

@@ -2,8 +2,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import classNames from "classnames";
+import { ProjectResultType, PropertiesType } from "@/types/projects";
 
-const ProjectItem = ({ data }) => {
+interface Props {
+  data: ProjectResultType;
+}
+
+const ProjectItem = ({ data }: Props) => {
   console.log(data);
   const title = data.properties.Name.title[0].plain_text;
   const github = data.properties.Github.url;
@@ -13,9 +18,9 @@ const ProjectItem = ({ data }) => {
   const tags = data.properties.Tags.multi_select;
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
+
   // 색상 매핑 객체
-  // const colorMap: { [key: string]: string } = {
-  const colorMap = {
+  const colorMap: { [key: string]: string } = {
     red: "bg-custom-red",
     blue: "bg-custom-blue",
     purple: "bg-custom-purple",
@@ -28,27 +33,26 @@ const ProjectItem = ({ data }) => {
   };
 
   // 클래스 네임 설정 함수
-  // const getColorClassName = (color: string) => {
-  const getColorClassName = color => {
+  const getColorClassName = (color: string) => {
     return colorMap[color] || "bg-custom-default"; // 기본값 설정 가능
   };
 
-  const calculatedPeriod = (start, end) => {
+  const calculatedPeriod = (start: string, end: string): number => {
     const startDateStringArray = start.split("-");
     const endDateStringArray = end.split("-");
 
     var startDate = new Date(
-      startDateStringArray[0],
-      startDateStringArray[1],
-      startDateStringArray[2]
+      Number(startDateStringArray[0]),
+      Number(startDateStringArray[1]) - 1, // 월은 0부터 시작하므로 -1 필요
+      Number(startDateStringArray[2])
     );
     var endDate = new Date(
-      endDateStringArray[0],
-      endDateStringArray[1],
-      endDateStringArray[2]
+      Number(endDateStringArray[0]),
+      Number(endDateStringArray[1]) - 1, // 월은 0부터 시작하므로 -1 필요
+      Number(endDateStringArray[2])
     );
 
-    const diffInMs = Math.abs(endDate - startDate);
+    const diffInMs = Math.abs(endDate.getTime() - startDate.getTime());
     const result = diffInMs / (1000 * 60 * 60 * 24);
 
     return result;

@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import classNames from "classnames";
 
 const ProjectItem = ({ data }) => {
   console.log(data);
@@ -12,6 +13,25 @@ const ProjectItem = ({ data }) => {
   const tags = data.properties.Tags.multi_select;
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
+  // 색상 매핑 객체
+  // const colorMap: { [key: string]: string } = {
+  const colorMap = {
+    red: "bg-custom-red",
+    blue: "bg-custom-blue",
+    purple: "bg-custom-purple",
+    gray: "bg-custom-gray",
+    brown: "bg-custom-brown",
+    green: "bg-custom-green",
+    orange: "bg-custom-orange",
+    pink: "bg-custom-pink",
+    yellow: "bg-custom-yellow",
+  };
+
+  // 클래스 네임 설정 함수
+  // const getColorClassName = (color: string) => {
+  const getColorClassName = color => {
+    return colorMap[color] || "bg-custom-default"; // 기본값 설정 가능
+  };
 
   const calculatedPeriod = (start, end) => {
     const startDateStringArray = start.split("-");
@@ -66,7 +86,10 @@ const ProjectItem = ({ data }) => {
         <div className="flex flex-wrap items-start gap-2 mt-2">
           {tags.map(aTag => (
             <h6
-              className="px-2 py-1 rounded-md bg-sky-200 dark:bg-sky-700 w-30"
+              className={classNames(
+                "px-2 py-1 rounded-md w-30",
+                getColorClassName(aTag.color) // 동적 클래스 설정
+              )}
               key={aTag.id}
             >
               {aTag.name}

@@ -2,28 +2,7 @@ import Seo from "@/components/Seo";
 import { DATABASE_ID, TOKEN } from "@/config";
 import { GetStaticProps } from "next";
 import ProjectItem from "@/components/projects/project-item";
-
-interface Rroperties {}
-interface ProjectResultType {
-  object: string;
-  id: string;
-  created_time: Date;
-  last_edited_time: Date;
-  created_by: {
-    object: string;
-    id: string;
-  };
-  properties: PropertiesType;
-}
-
-interface PropertiesType {
-  WorkPeriod: {
-    date: {
-      start: Date;
-      end: Date;
-    };
-  };
-}
+import { ProjectResultType } from "@/types/projects";
 
 interface Props {
   projectsList: ProjectResultType[];

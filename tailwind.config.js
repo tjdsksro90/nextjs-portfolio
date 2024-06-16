@@ -33,6 +33,7 @@ module.exports = {
         "custom-gray-dark": "rgb(90, 90, 90)",
         "custom-default": "rgb(227, 226, 224)",
         "custom-default-dark": "rgb(55, 55, 55)",
+        code: "rgba(135,131,120,.15)",
       },
     },
   },

@@ -1,19 +1,25 @@
 import { TOKEN } from "@/config";
 import { ProjectDetailType } from "@/types/project-detail";
+import { ProjectResultType } from "@/types/projects";
 import classNames from "classnames";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import React from "react";
 
 interface ProjectDetailProps {
   projectId: string;
-  notionData: ProjectDetailType[]; // Define the appropriate type based on the API response
+  blocksData: ProjectDetailType[];
+  pagesData: ProjectResultType;
 }
 
-const ProjectDetail = ({ projectId, notionData }: ProjectDetailProps) => {
+const ProjectDetail = ({
+  projectId,
+  blocksData,
+  pagesData,
+}: ProjectDetailProps) => {
   return (
     <ul>
       <li>Project Detail for ID: {projectId}</li>
-      {notionData.map(block => {
+      {blocksData.map(block => {
         if (block.type === "heading_1") {
           return (
             <li
@@ -83,7 +89,7 @@ const ProjectDetail = ({ projectId, notionData }: ProjectDetailProps) => {
         // Add more cases for different types if needed
         return null;
       })}
-      <pre>{JSON.stringify(notionData, null, 2)}</pre>
+      <pre>{JSON.stringify(pagesData, null, 2)}</pre>
       {/* Render your data as needed */}
     </ul>
   );
@@ -97,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (
   const id = ctx.params?.pageId;
 
   // Make a request to the Notion API
-  const response = await fetch(
+  const resBlocks = await fetch(
     `https://api.notion.com/v1/blocks/${id}/children`,
     {
       method: "GET",
@@ -107,12 +113,23 @@ export const getServerSideProps: GetServerSideProps = async (
       },
     }
   );
-  const data = await response.json();
-  console.log("data: ", data);
+
+  const resPages = await fetch(`https://api.notion.com/v1/pages/${id}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${TOKEN}`,
+      "Notion-Version": "2022-06-28",
+    },
+  });
+
+  const blocksData = await resBlocks.json();
+  const pagesData = await resPages.json();
+
   return {
     props: {
       projectId: id,
-      notionData: data.results,
+      blocksData: blocksData.results,
+      pagesData,
     },
   };
 };

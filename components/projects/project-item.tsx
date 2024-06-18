@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import classNames from "classnames";
 import { ProjectResultType, PropertiesType } from "@/types/projects";
+import { getColorClassName } from "@/utils/color-mapping";
+import { calculatedPeriod } from "@/utils/period-mapping";
 
 interface Props {
   data: ProjectResultType;
@@ -19,45 +21,6 @@ const ProjectItem = ({ data }: Props) => {
   const tags = data.properties.Tags.multi_select;
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
-
-  // 색상 매핑 객체
-  const colorMap: { [key: string]: string } = {
-    red: "bg-custom-red dark:bg-custom-red-dark",
-    orange: "bg-custom-orange dark:bg-custom-orange-dark",
-    yellow: "bg-custom-yellow dark:bg-custom-yellow-dark",
-    green: "bg-custom-green dark:bg-custom-green-dark",
-    blue: "bg-custom-blue dark:bg-custom-blue-dark",
-    purple: "bg-custom-purple dark:bg-custom-purple-dark",
-    pink: "bg-custom-pink dark:bg-custom-pink-dark",
-    brown: "bg-custom-brown dark:bg-custom-brown-dark",
-    gray: "bg-custom-gray dark:bg-custom-gray-dark",
-  };
-
-  // 클래스 네임 설정 함수
-  const getColorClassName = (color: string) => {
-    return colorMap[color] || "bg-custom-default dark:bg-custom-default-dark"; // 기본값 설정 가능
-  };
-
-  const calculatedPeriod = (start: string, end: string): number => {
-    const startDateStringArray = start.split("-");
-    const endDateStringArray = end.split("-");
-
-    var startDate = new Date(
-      Number(startDateStringArray[0]),
-      Number(startDateStringArray[1]) - 1, // 월은 0부터 시작하므로 -1 필요
-      Number(startDateStringArray[2])
-    );
-    var endDate = new Date(
-      Number(endDateStringArray[0]),
-      Number(endDateStringArray[1]) - 1, // 월은 0부터 시작하므로 -1 필요
-      Number(endDateStringArray[2])
-    );
-
-    const diffInMs = Math.abs(endDate.getTime() - startDate.getTime());
-    const result = diffInMs / (1000 * 60 * 60 * 24);
-
-    return result;
-  };
 
   return (
     <div className="project-card">

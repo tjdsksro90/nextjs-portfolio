@@ -10,6 +10,7 @@ interface Props {
 
 const ProjectItem = ({ data }: Props) => {
   console.log(data);
+  const id = data.id;
   const title = data.properties.Name.title[0].plain_text;
   const github = data.properties.Github.url;
   const youtube = data.properties.Youtube.url;
@@ -71,7 +72,7 @@ const ProjectItem = ({ data }: Props) => {
         quality={100}
       />
 
-      <div className="flex flex-col p-4">
+      <div className="flex flex-col flex-1 p-4">
         <h1 className="text-2xl font-bold">{title}</h1>
         <h3 className="mt-4 text-xl">{description}</h3>
         {github && (
@@ -99,6 +100,11 @@ const ProjectItem = ({ data }: Props) => {
               {aTag.name}
             </h6>
           ))}
+        </div>
+        <div className="mt-auto text-right">
+          <Link className="mt-5 btn-project" href={`/projects/${id}`}>
+            작업물 자세히 보기
+          </Link>
         </div>
       </div>
     </div>

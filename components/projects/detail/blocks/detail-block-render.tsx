@@ -15,11 +15,7 @@ const BlockRender = ({ block }: { block: ProjectDetailType }) => {
 
   return (
     <li key={block.id} className={blockClasses[blockType]}>
-      {blockType.startsWith("heading") ? (
-        <BlockDetail richText={block[blockType].rich_text} />
-      ) : blockType === "paragraph" || blockType === "bulleted_list_item" ? (
-        <BlockDetail richText={block[blockType].rich_text} />
-      ) : null}
+      {blockType && <BlockDetail richText={block[blockType].rich_text} />}
     </li>
   );
 };

@@ -1,27 +1,27 @@
+import React from "react";
 import { ProjectDetailType } from "@/types/project-detail";
-import {
-  BulletedListItemBlock,
-  Heading1Block,
-  Heading2Block,
-  Heading3Block,
-  ParagraphBlock,
-} from "./detail-blocks";
+import { BlockDetail } from "./detail-blocks";
+
+const blockClasses = {
+  heading_1: "mt-10 text-4xl font-semibold mb-7 sm:text-6xl",
+  heading_2: "mt-5 text-2xl font-semibold mb-7 sm:text-4xl",
+  heading_3: "mt-5 mb-3 text-xl font-semibold sm:text-2xl",
+  paragraph: "mb-2 ml-6",
+  bulleted_list_item: "mb-2 ml-6 list-disc",
+};
 
 const BlockRender = ({ block }: { block: ProjectDetailType }) => {
-  switch (block.type) {
-    case "heading_1":
-      return <Heading1Block block={block} />;
-    case "heading_2":
-      return <Heading2Block block={block} />;
-    case "heading_3":
-      return <Heading3Block block={block} />;
-    case "paragraph":
-      return <ParagraphBlock block={block} />;
-    case "bulleted_list_item":
-      return <BulletedListItemBlock block={block} />;
-    default:
-      return null;
-  }
+  const blockType = block.type as keyof typeof blockClasses;
+
+  return (
+    <li key={block.id} className={blockClasses[blockType]}>
+      {blockType.startsWith("heading") ? (
+        <BlockDetail richText={block[blockType].rich_text} />
+      ) : blockType === "paragraph" || blockType === "bulleted_list_item" ? (
+        <BlockDetail richText={block[blockType].rich_text} />
+      ) : null}
+    </li>
+  );
 };
 
 export default BlockRender;

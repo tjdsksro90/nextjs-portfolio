@@ -4,7 +4,6 @@ import PageRender from "@/components/projects/detail/pages/detail-page-render";
 import { TOKEN } from "@/config";
 import { ProjectDetailType } from "@/types/project-detail";
 import { ProjectResultType } from "@/types/projects";
-import classNames from "classnames";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import React from "react";
 

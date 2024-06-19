@@ -1,10 +1,12 @@
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import classNames from "classnames";
 import { ProjectResultType, PropertiesType } from "@/types/projects";
-import { getColorClassName } from "@/utils/color-mapping";
-import { calculatedPeriod } from "@/utils/period-mapping";
+import CommonImage from "../common/image";
+import CommonTitle from "../common/title";
+import CommonDescription from "../common/description";
+import CommonLink from "../common/link";
+import CommonPeriod from "../common/period";
+import CommonTags from "../common/tags";
 
 interface Props {
   data: ProjectResultType;
@@ -24,46 +26,16 @@ const ProjectItem = ({ data }: Props) => {
 
   return (
     <div className="project-card">
-      <Image
-        className="rounded-t-xl"
-        src={imgSrc}
-        alt="cover image"
-        width="1920"
-        height="1080"
-        layout="responsive"
-        objectFit="cover"
-        quality={100}
-      />
-
+      <CommonImage src={imgSrc} />
       <div className="flex flex-col flex-1 p-4">
-        <h1 className="text-2xl font-bold">{title}</h1>
-        <h3 className="mt-4 text-xl">{description}</h3>
-        {github && (
-          <Link className="mr-5" href={github}>
-            깃허브 바로가기
-          </Link>
-        )}
+        <CommonTitle title={title} />
+        <CommonDescription description={description} />
+        {github && <CommonLink href={github} text="깃허브 바로가기" />}
         {youtube && (
-          <Link className="mr-5" href={youtube}>
-            유튜브 시연영상 보러가기
-          </Link>
+          <CommonLink href={github} text="유튜브 시연영상 보러가기" />
         )}
-        <p className="my-1 ">
-          작업기간 : {start} ~ {end} ({calculatedPeriod(start, end)}일)
-        </p>
-        <div className="flex flex-wrap items-start gap-2 mt-2">
-          {tags.map(aTag => (
-            <h6
-              className={classNames(
-                "px-2 py-1 rounded-md w-30",
-                getColorClassName(aTag.color) // 동적 클래스 설정
-              )}
-              key={aTag.id}
-            >
-              {aTag.name}
-            </h6>
-          ))}
-        </div>
+        <CommonPeriod start={start} end={end} />
+        <CommonTags tags={tags} />
         <div className="mt-auto text-right">
           <Link className="mt-5 btn-project" href={`/projects/${id}`}>
             작업물 자세히 보기

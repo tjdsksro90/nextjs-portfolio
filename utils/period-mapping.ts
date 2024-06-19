@@ -14,7 +14,8 @@ export const calculatedPeriod = (start: string, end: string): number => {
   );
 
   const diffInMs = Math.abs(endDate.getTime() - startDate.getTime());
-  const result = diffInMs / (1000 * 60 * 60 * 24);
+  const days = diffInMs / (1000 * 60 * 60 * 24);
+  const result = Math.floor(days / 7);
 
   return result;
 };

@@ -9,7 +9,7 @@ interface Props {
 const CommonPeriod = ({ start, end }: Props) => {
   return (
     <p className="my-1 ">
-      작업기간 : {start} ~ {end} ({calculatedPeriod(start, end)}일)
+      작업기간 : {start} ~ {end} ({calculatedPeriod(start, end)}주)
     </p>
   );
 };

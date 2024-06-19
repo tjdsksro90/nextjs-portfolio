@@ -1,4 +1,5 @@
 import CommonDescription from "@/components/common/description";
+import CommonFiles from "@/components/common/files";
 import CommonImage from "@/components/common/image";
 import CommonLink from "@/components/common/link";
 import CommonPeriod from "@/components/common/period";
@@ -20,12 +21,17 @@ const PageRender = ({ data }: Props) => {
   const tags = data.properties.Tags.multi_select;
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
+  const files = data.properties.Files.files;
 
   return (
-    <div className="project-card">
-      <CommonImage src={imgSrc} />
-
-      <div className="flex flex-col flex-1 p-4">
+    <div className="">
+      <CommonImage
+        src={imgSrc}
+        wrap="w-[500px] max-w-full"
+        width={500}
+        height={500}
+      />
+      <div className="flex flex-col flex-1 py-4">
         <CommonTitle title={title} />
         <CommonDescription description={description} />
         {github && <CommonLink href={github} text="깃허브 바로가기" />}
@@ -34,6 +40,7 @@ const PageRender = ({ data }: Props) => {
         )}
         <CommonPeriod start={start} end={end} />
         <CommonTags tags={tags} />
+        <CommonFiles files={files} />
       </div>
     </div>
   );

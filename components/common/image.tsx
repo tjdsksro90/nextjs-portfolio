@@ -2,21 +2,27 @@ import Image from "next/image";
 import React from "react";
 
 interface Props {
+  wrap?: string;
   src: string;
+  className?: string;
+  width: number;
+  height: number;
 }
 
-const CommonImage = ({ src }: Props) => {
+const CommonImage = ({ src, className, wrap, width, height }: Props) => {
   return (
-    <Image
-      className="rounded-t-xl"
-      src={src}
-      alt="cover image"
-      width="1920"
-      height="1080"
-      layout="responsive"
-      objectFit="cover"
-      quality={100}
-    />
+    <div className={wrap}>
+      <Image
+        className={className}
+        src={src}
+        alt="cover image"
+        width={width}
+        height={height}
+        layout="responsive"
+        objectFit="cover"
+        quality={100}
+      />
+    </div>
   );
 };
 

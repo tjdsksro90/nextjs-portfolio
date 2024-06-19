@@ -23,13 +23,22 @@ const ProjectItem = ({ data }: Props) => {
   const tags = data.properties.Tags.multi_select;
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
+  const site = data.properties.Site.url;
+  const site2 = data.properties.Site2.url;
 
   return (
     <div className="project-card">
-      <CommonImage src={imgSrc} />
+      <CommonImage
+        src={imgSrc}
+        width={1920}
+        height={1080}
+        className="rounded-t-xl"
+      />
       <div className="flex flex-col flex-1 p-4">
         <CommonTitle title={title} />
         <CommonDescription description={description} />
+        {site && <CommonLink href={site} text="사이트 링크 바로가기" />}
+        {site2 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
         {github && <CommonLink href={github} text="깃허브 바로가기" />}
         {youtube && (
           <CommonLink href={github} text="유튜브 시연영상 보러가기" />

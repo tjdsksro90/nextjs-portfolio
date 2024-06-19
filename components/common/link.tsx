@@ -9,7 +9,7 @@ interface Props {
 const CommonLink = ({ href, text }: Props) => {
   return (
     <Link className="mr-5" href={href} legacyBehavior>
-      <a target="_blank" rel="noopener noreferrer">
+      <a className="mb-1" target="_blank" rel="noopener noreferrer">
         {text}
       </a>
     </Link>

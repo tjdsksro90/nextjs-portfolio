@@ -1,5 +1,6 @@
 import Seo from "@/components/Seo";
 import BlockRender from "@/components/projects/detail/blocks/detail-block-render";
+import FileRender from "@/components/projects/detail/files/detail-file-render";
 import PageRender from "@/components/projects/detail/pages/detail-page-render";
 import { TOKEN } from "@/config";
 import { ProjectDetailType } from "@/types/project-detail";
@@ -27,9 +28,7 @@ const ProjectDetail = ({
         {blocksData.map(block => (
           <BlockRender key={block.id} block={block} />
         ))}
-        <pre>{JSON.stringify(blocksData, null, 2)}</pre>
-        <pre>{JSON.stringify(pagesData, null, 2)}</pre>
-        {/* Render your data as needed */}
+        <FileRender key={pagesData.id} data={pagesData} />
       </ul>
     </div>
   );

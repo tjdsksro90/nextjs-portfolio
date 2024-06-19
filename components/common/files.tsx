@@ -12,9 +12,9 @@ const CommonFiles = ({ files }: Props) => {
       {files.map(aFile => (
         <CommonImage
           src={aFile.file.url}
-          wrap="w-[500px] max-w-full"
-          width={500}
-          height={500}
+          wrap="w-[710px] max-w-full mb-2"
+          width={710}
+          height={710}
         />
       ))}
     </div>

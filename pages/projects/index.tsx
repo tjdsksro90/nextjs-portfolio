@@ -1,8 +1,8 @@
 import Seo from "@/components/Seo";
 import { DATABASE_ID, TOKEN } from "@/config";
 import { GetStaticProps } from "next";
-import ProjectItem from "@/components/projects/project-item";
 import { ProjectResultType } from "@/types/projects";
+import ProjectItemList from "@/components/projects/project-item-list";
 
 interface Props {
   projectsList: ProjectResultType[];
@@ -25,9 +25,7 @@ const Projects = ({ projectsList }: Props) => {
       </h1>
 
       <div className="grid grid-cols-1 gap-8 p-12 m-4 md:grid-cols-2">
-        {sortedProjectsList.map(item => (
-          <ProjectItem data={item} />
-        ))}
+        <ProjectItemList list={sortedProjectsList}/>
       </div>
     </div>
   );

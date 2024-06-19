@@ -19,7 +19,7 @@ const ProjectDetail = ({
   pagesData,
 }: ProjectDetailProps) => {
   return (
-    <div className="px-3 mb-10">
+    <div className="min-h-screen px-3 mb-10">
       <Seo title="Project Detail" />
       <ul>
         <li>Project Detail for ID: {projectId}</li>

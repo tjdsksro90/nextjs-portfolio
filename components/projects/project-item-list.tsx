@@ -31,12 +31,12 @@ const ProjectItemList = ({ list }: Props) => {
         ))
       ) : (
         <>
-          <div>
+          <div className="flex flex-col gap-8">
             {list.filter((_, index) => index % 2 === 0).map((item) => (
               <ProjectItem key={item.id} data={item} />
             ))}
           </div>
-          <div>
+          <div className="flex flex-col gap-8">
             {list.filter((_, index) => index % 2 !== 0).map((item) => (
               <ProjectItem key={item.id} data={item} />
             ))}

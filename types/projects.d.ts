@@ -23,7 +23,15 @@ interface PropertiesType {
   Description: {
     rich_text: { plain_text: string }[];
   };
-  Files;
+  Files: {
+    files: PropertiesFilesType[] | [];
+  };
+  Site: {
+    url: string;
+  };
+  Site2: {
+    url: string;
+  };
   Github: {
     url: string;
   };
@@ -38,5 +46,11 @@ interface PropertiesType {
       start: string;
       end: string;
     };
+  };
+}
+
+interface PropertiesFilesType {
+  file: {
+    url: string;
   };
 }

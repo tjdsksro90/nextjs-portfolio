@@ -1,6 +1,6 @@
-import { getColorClassName } from "@/utils/color-mapping";
-import classNames from "classnames";
-import React from "react";
+import { getBgColorClassName } from '@/utils/bg-color-mapping';
+import classNames from 'classnames';
+import React from 'react';
 
 interface Props {
   tags: {
@@ -8,16 +8,17 @@ interface Props {
     name: string;
     color: string;
   }[];
+  wrap: string;
 }
 
-const CommonTags = ({ tags }: Props) => {
+const CommonTags = ({ tags, wrap }: Props) => {
   return (
-    <div className="flex flex-wrap items-start gap-2 mt-2">
+    <div className={wrap}>
       {tags.map(aTag => (
         <h6
           className={classNames(
-            "px-2 py-1 rounded-md w-30",
-            getColorClassName(aTag.color) // 동적 클래스 설정
+            'px-2 py-1 rounded-md w-30',
+            getBgColorClassName(aTag.color), // 동적 클래스 설정
           )}
           key={aTag.id}
         >

@@ -1,26 +1,34 @@
-import Link from "next/link";
-import Animation from "./Animation";
+import Link from 'next/link';
+import Animation from './Animation';
 
-function Hero() {
+export default function Hero() {
   return (
     <>
-      <div className="flex flex-col items-center mb-16 text-center lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 md:items-start md:text-left md:mb-0">
-        <h1 className="mb-4 text-3xl font-medium title-font sm:text-4xl">
+      <div className="flex flex-col items-center mb-16 text-center lg:flex-grow md:w-1/2 lg:pr-24 md:pr-14 md:items-start md:text-left md:mb-0">
+        <h1 className="mb-4 text-3xl font-bold title-font sm:text-5xl/tight">
           안녕하세요!
-          <br className="hidden lg:inline-block" />
+          <br />
           윤호준입니다.
         </h1>
-        <p className="mb-8 leading-relaxed">
-          쇠마팍하는 미리졀아졔 선진딤을 채됴이밉오의 아로아아, 자농피사로
-          야들다. 엉느기 요짐 낙올호다 애귄익은 노뜻부스에 가더자학은 라이인다.
-          미럿을 애여 스댤닌져 즈헤 즈아간탕고 모아후가 가가시 가렷을까 르넌에
-          어임으라 쥬따이. 라톼사고 조눔디니의 허븟에 으마로써 쟁긔의 드추놀노는
-          은로를 애휩게으는데 잉뵈가 둔앙이 항버느로. 밍힝늑저아걍는 이닌가긴
-          헌쟌합는다 쟅옹은 문산도록 길비턴힌아려고 다므왈후치게 사쟀지선다.
+        <p className="mb-8 leading-relaxed break-keep">
+          저의 포트폴리오에 오신 것을 환영합니다 - 현재 사이트는 NEXTJS로 개발되있습니다. 여가 시간에는 사이드
+          프로젝트를 개발하고 그에 대해 블로그에 글을 올리는 것을 좋아합니다. 방문해주셔서 감사합니다!
         </p>
         <div className="flex justify-center">
-          <Link className="btn-project" href={"/projects"}>
-            프로젝트 보러가기
+          <Link className="flex items-center gap-2 btn-project" href={'/projects'}>
+            <span>프로젝트 보러가기</span>
+            <span className="w-5">
+              <svg
+                fill="none"
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7"></path>
+              </svg>
+            </span>
           </Link>
         </div>
       </div>
@@ -30,5 +38,3 @@ function Hero() {
     </>
   );
 }
-
-export default Hero;

@@ -24,15 +24,19 @@ p {
 }
 
 .bg-primary {
-  @apply bg-white dark:bg-slate-800;
+  @apply bg-white dark:bg-slate-950;
+}
+
+.text-primary {
+  @apply text-black dark:text-white;
 }
 
 .btn-project {
-  @apply inline-flex px-6 py-2 text-lg text-white bg-indigo-500 border-0 rounded dark:text-white focus:outline-none hover:bg-indigo-600;
+  @apply inline-flex px-6 py-2 text-lg text-white bg-indigo-500 border-0 rounded dark:text-white focus:outline-none hover:bg-indigo-600 hover:text-white;
 }
 
 .project-card {
-  @apply flex flex-col w-full transition duration-300 transform border border-gray-300 rounded-xl hover:scale-105 hover:shadow-lg dark:border-gray-200/50 dark:hover:shadow-gray-400/40 hover:text-blue-600;
+  @apply flex flex-col w-full transition duration-300 transform border border-gray-300 rounded-xl hover:shadow-lg dark:border-gray-200/50 dark:hover:shadow-gray-400/40 hover:text-blue-600;
 }
 
 .pick-white {

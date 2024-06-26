@@ -42,4 +42,5 @@ export interface ProjectDetailType {
   heading_3: { rich_text: BlockText[] };
   bulleted_list_item: { rich_text: BlockText[] };
   paragraph: { rich_text: BlockText[] };
+  image: { external: { url: string } };
 }

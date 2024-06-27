@@ -49,7 +49,7 @@ const ProjectDetail = ({ projectId, blocksData, pagesData }: ProjectDetailProps)
 export default ProjectDetail;
 
 export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSidePropsContext) => {
-  const { pageId } = ctx.params as { pageId: string };
+  const { id: pageId } = ctx.query;
 
   const resBlocks = await fetch(`https://api.notion.com/v1/blocks/${pageId}/children`, {
     method: 'GET',

@@ -39,7 +39,8 @@ const ProjectItem = ({ data }: Props) => {
         <div className="mt-auto text-right">
           <Link
             className="flex items-center justify-end gap-1 mt-5 font-semibold text-indigo-500"
-            href={`/projects/${id}`}
+            href={`/projects/${title}?id=${id}`}
+            as={`projects/${title}`}
           >
             <span>자세히 보기</span>
             <span className="w-5">

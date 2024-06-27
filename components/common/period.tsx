@@ -1,5 +1,4 @@
 import { calculatedPeriod } from '@/utils/period-mapping';
-import React from 'react';
 
 interface Props {
   start: string;

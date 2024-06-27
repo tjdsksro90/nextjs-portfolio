@@ -1,6 +1,5 @@
 import { getBgColorClassName } from '@/utils/bg-color-mapping';
 import classNames from 'classnames';
-import React from 'react';
 
 interface Props {
   tags: {

@@ -7,7 +7,6 @@ import { ProjectDetailType } from '@/types/project-detail';
 import { ProjectResultType } from '@/types/projects';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
-import React from 'react';
 
 interface ProjectDetailProps {
   projectId: string;

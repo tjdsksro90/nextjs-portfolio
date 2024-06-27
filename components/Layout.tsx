@@ -1,6 +1,5 @@
-import Footer from "./Footer";
-import Header from "./Header";
-import type { AppType } from "next/app";
+import Footer from './Footer';
+import Header from './Header';
 
 type AppLayoutProps = {
   children: React.ReactNode;

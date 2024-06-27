@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { ProjectResultType, PropertiesType } from '@/types/projects';
+import { ProjectResultType } from '@/types/projects';
 import CommonImage from '../common/image';
 import CommonTitle from '../common/title';
 import CommonDescription from '../common/description';
@@ -13,7 +13,6 @@ interface Props {
 }
 
 const ProjectItem = ({ data }: Props) => {
-  console.log(data);
   const id = data.id;
   const title = data.properties.Name.title[0].plain_text;
   const github = data.properties.Github.url;

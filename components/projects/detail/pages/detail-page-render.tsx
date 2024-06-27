@@ -11,7 +11,6 @@ interface Props {
 }
 
 const PageRender = ({ data }: Props) => {
-  const id = data.id;
   const title = data.properties.Name.title[0].plain_text;
   const github = data.properties.Github.url;
   const youtube = data.properties.Youtube.url;

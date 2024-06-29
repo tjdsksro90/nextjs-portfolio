@@ -26,6 +26,9 @@ function Header() {
           <Link className="mr-5" href={'/'}>
             홈
           </Link>
+          <Link className="mr-5" href={'/about'}>
+            소개
+          </Link>
           <Link className="mr-5" href={'/projects'}>
             프로젝트
           </Link>

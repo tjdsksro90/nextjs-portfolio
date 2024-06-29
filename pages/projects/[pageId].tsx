@@ -9,12 +9,11 @@ import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 
 interface ProjectDetailProps {
-  projectId: string;
   blocksData: ProjectDetailType[];
   pagesData: ProjectResultType;
 }
 
-const ProjectDetail = ({ projectId, blocksData, pagesData }: ProjectDetailProps) => {
+const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
   return (
     <div className="container min-h-screen px-3 mx-auto my-10">
       <Seo title="Project Detail" />
@@ -72,7 +71,6 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
 
   return {
     props: {
-      projectId: pageId,
       blocksData: blocksData.results,
       pagesData,
     },

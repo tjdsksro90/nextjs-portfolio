@@ -35,7 +35,7 @@ function Header() {
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
           {Object.values(MENU_ITEM).map((item, index) => {
-            const activeClass = 'mr-5 active';
+            const activeClass = `mr-5 relative after:content-[''] text-indigo-500 font-semibold after:bg-indigo-500 after:w-full after:absolute after:left-0 after:bottom-[-10px] after:h-[3px] after:rounded-md`;
             const passiveClass = 'mr-5';
             const isActive = router.pathname.startsWith(item[1]);
             const linkClass = isActive ? activeClass : passiveClass;

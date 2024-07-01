@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
+import { useRouter } from 'next/router';
 
 type MenuItemType = [string, string, boolean];
 
 function Header() {
+  const router = useRouter();
   const MENU_ITEM: Record<string, MenuItemType> = {
     home: ['홈', '/', false],
     about: ['소개', '/about', false],
-    projects: ['프로젝트', '/gallery', false],
+    projects: ['프로젝트', '/projects', false],
     contact: ['연락하기', 'https://open.kakao.com/o/sKGqxszg', true],
   };
 
@@ -33,17 +35,21 @@ function Header() {
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
           {Object.values(MENU_ITEM).map((item, index) => {
+            const activeClass = 'mr-5 active';
+            const passiveClass = 'mr-5';
+            const isActive = router.pathname === item[1];
+            const linkClass = isActive ? activeClass : passiveClass;
             if (item[2]) {
               return (
                 <Link legacyBehavior href={item[1]}>
-                  <a className="mr-5" target="_blank" rel="noopener noreferrer">
+                  <a className={linkClass} target="_blank" rel="noopener noreferrer">
                     {item[0]}
                   </a>
                 </Link>
               );
             } else {
               return (
-                <Link className="mr-5" href={item[1]} key={Object.keys(MENU_ITEM)[index]}>
+                <Link className={linkClass} href={item[1]} key={Object.keys(MENU_ITEM)[index]}>
                   {item[0]}
                 </Link>
               );

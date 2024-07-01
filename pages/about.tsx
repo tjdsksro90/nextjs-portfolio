@@ -1,4 +1,3 @@
-import person from '../public/me.jpg';
 import Seo from '@/components/Seo';
 import CommonImage from '@/components/common/image';
 
@@ -12,7 +11,7 @@ const About = () => {
             <div className="text-center sm:w-1/3 sm:pr-8 sm:py-8">
               <div className="inline-flex items-center justify-center w-20 h-20 overflow-hidden text-gray-400 bg-gray-200 rounded-full">
                 <CommonImage
-                  src={person}
+                  src="/me.jpg"
                   width={100}
                   height={100}
                   wrap="w-full h-full flex justify-center"

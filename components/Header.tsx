@@ -1,7 +1,16 @@
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 
+type MenuItemType = [string, string, boolean];
+
 function Header() {
+  const MENU_ITEM: Record<string, MenuItemType> = {
+    home: ['홈', '/', false],
+    about: ['소개', '/about', false],
+    projects: ['프로젝트', '/gallery', false],
+    contact: ['연락하기', 'https://open.kakao.com/o/sKGqxszg', true],
+  };
+
   return (
     <header className="text-gray-600 body-font">
       <div className="flex flex-col flex-wrap items-center p-5 md:container md:mx-auto md:flex-row">
@@ -23,20 +32,23 @@ function Header() {
           </a>
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
-          <Link className="mr-5" href={'/'}>
-            홈
-          </Link>
-          <Link className="mr-5" href={'/about'}>
-            소개
-          </Link>
-          <Link className="mr-5" href={'/projects'}>
-            프로젝트
-          </Link>
-          <Link legacyBehavior href={'https://open.kakao.com/o/sKGqxszg'}>
-            <a className="mr-5" target="_blank" rel="noopener noreferrer">
-              연락하기
-            </a>
-          </Link>
+          {Object.values(MENU_ITEM).map((item, index) => {
+            if (item[2]) {
+              return (
+                <Link legacyBehavior href={item[1]}>
+                  <a className="mr-5" target="_blank" rel="noopener noreferrer">
+                    {item[0]}
+                  </a>
+                </Link>
+              );
+            } else {
+              return (
+                <Link className="mr-5" href={item[1]} key={Object.keys(MENU_ITEM)[index]}>
+                  {item[0]}
+                </Link>
+              );
+            }
+          })}
         </nav>
         <ThemeToggle />
       </div>

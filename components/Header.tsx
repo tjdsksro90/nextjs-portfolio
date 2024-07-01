@@ -37,7 +37,7 @@ function Header() {
           {Object.values(MENU_ITEM).map((item, index) => {
             const activeClass = 'mr-5 active';
             const passiveClass = 'mr-5';
-            const isActive = router.pathname === item[1];
+            const isActive = router.pathname.startsWith(item[1]);
             const linkClass = isActive ? activeClass : passiveClass;
             if (item[2]) {
               return (

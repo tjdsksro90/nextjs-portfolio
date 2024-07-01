@@ -25,7 +25,7 @@ const About = () => {
             </div>
             <div className="pt-4 mt-4 text-center border-t border-gray-200 sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l sm:border-t-0 sm:mt-0 sm:text-left">
               <p className="mb-4 text-lg leading-relaxed break-keep">
-                <span className="block mb-4 text-2xl leading-normal text-primary">
+                <span className="block mb-4 text-2xl font-semibold leading-normal text-primary">
                   경험은 어디든 도움이 된다고 생각하는 개발자
                 </span>
                 전공은 <span className="text-indigo-500">시각디자인</span>학과로 디자인 회사에서 4년정도 근무했습니다.

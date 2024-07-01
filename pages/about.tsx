@@ -1,10 +1,12 @@
 import person from '../public/me.jpg';
+import Seo from '@/components/Seo';
 import CommonImage from '@/components/common/image';
 
 const About = () => {
   return (
     <section className="text-gray-600 body-font">
       <div className="container flex flex-col px-5 py-24 mx-auto">
+        <Seo title="About" />
         <div className="mx-auto lg:w-4/6">
           <div className="flex flex-col mt-10 sm:flex-row">
             <div className="text-center sm:w-1/3 sm:pr-8 sm:py-8">

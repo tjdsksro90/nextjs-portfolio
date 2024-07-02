@@ -10,6 +10,7 @@ const nextConfig = {
     ],
     path: '/_next/image',
     loader: 'default',
+    disableStaticImages: true,
   },
 };
 

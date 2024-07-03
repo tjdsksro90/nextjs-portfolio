@@ -1,11 +1,13 @@
 import Seo from '@/components/Seo';
 import CommonImage from '@/components/common/image';
+import MainTitle from '@/components/common/main-title';
 
 const About = () => {
   return (
-    <section className="text-gray-600 body-font">
+    <section className="container mx-auto text-gray-600 body-font min-h-screen px-5 md:px-14">
+      <Seo title="About" />
+      <MainTitle main="About" />
       <div className="container flex flex-col px-5 py-24 mx-auto">
-        <Seo title="About" />
         <div className="mx-auto lg:w-4/6">
           <div className="flex flex-col mt-10 sm:flex-row">
             <div className="text-center sm:w-1/3 sm:pr-8 sm:py-8">
@@ -19,7 +21,7 @@ const About = () => {
                 />
               </div>
               <div className="flex flex-col items-center justify-center text-center">
-                <h2 className="mt-4 text-lg font-medium text-primary title-font">윤호준</h2>
+                <h3 className="mt-4 text-lg font-medium text-primary title-font">윤호준</h3>
                 <div className="w-12 h-1 mt-2 mb-4 bg-indigo-500 rounded"></div>
                 <p className="text-base">FE Engineer</p>
               </div>

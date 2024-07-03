@@ -36,7 +36,7 @@ p {
 }
 
 .project-card {
-  @apply flex flex-col w-full transition duration-300 transform border border-gray-300 rounded-xl hover:shadow-lg dark:border-gray-200/50 dark:hover:shadow-gray-400/40 hover:text-blue-600;
+  @apply flex flex-col w-full text-blue-600 transition duration-300 transform border border-gray-300 rounded-xl hover:shadow-lg dark:border-gray-200/50 dark:hover:shadow-gray-400/40;
 }
 
 .pick-white {

@@ -3,6 +3,7 @@ import { DATABASE_ID, TOKEN } from '@/config';
 import { GetStaticProps } from 'next';
 import { ProjectResultType } from '@/types/projects';
 import ProjectItemList from '@/components/projects/project-item-list';
+import MainTitle from '@/components/common/main-title';
 
 interface Props {
   projectsList: ProjectResultType[];
@@ -16,14 +17,17 @@ const Projects = ({ projectsList }: Props) => {
   });
 
   return (
-    <div className="container flex flex-col items-center justify-center min-h-screen px-3 mx-auto mb-10">
+    <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mb-10 px-5 md:px-14">
       <Seo title="Projects" />
-
-      <h1 className="text-4xl font-bold sm:text-6xl">
-        총 프로젝트 :<span className="pl-4 text-blue-500">{projectsList.length}</span>
-      </h1>
-
-      <div className="grid grid-cols-1 gap-8 p-12 m-4 md:grid-cols-2">
+      <MainTitle
+        main="Projects"
+        sub={
+          <span>
+            총 프로젝트 : <span className=" text-blue-500 font-semibold">{projectsList.length}</span>
+          </span>
+        }
+      />
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
         <ProjectItemList list={sortedProjectsList} />
       </div>
     </div>

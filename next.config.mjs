@@ -1,6 +1,12 @@
+import withPlaiceholder from '@plaiceholder/next';
+import withImages from 'next-images';
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+
+const nextConfig = withImages({
   reactStrictMode: true,
+  experimental: {
+    appDir: true,
+  },
   images: {
     domains: [
       'www.notion.so',
@@ -10,8 +16,10 @@ const nextConfig = {
     ],
     path: '/_next/image',
     loader: 'default',
+    formats: ['image/avif', 'image/webp'],
     disableStaticImages: true,
   },
-};
+  swcMinify: true,
+});
 
-module.exports = nextConfig;
+export default withPlaiceholder(nextConfig);

@@ -11,21 +11,21 @@ type Post = {
 };
 
 export default function Home() {
-  // const [posts, setPosts] = useState<Post[]>([]);
+  /*const [posts, setPosts] = useState<Post[]>([]);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     try {
-  //       const response = await axios.get<{ items: Post[] }>('/api/rss');
-  //       setPosts(response.data.items);
-  //       console.log(response);
-  //     } catch (error) {
-  //       console.error('Failed to fetch posts:', error);
-  //     }
-  //   };
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get<{ items: Post[] }>('/api/rss');
+        setPosts(response.data.items);
+        console.log(response);
+      } catch (error) {
+        console.error('Failed to fetch posts:', error);
+      }
+    };
 
-  //   fetchPosts();
-  // }, []);
+    fetchPosts();
+  }, []);*/
 
   return (
     <div className="container px-5 mx-auto md:px-14">

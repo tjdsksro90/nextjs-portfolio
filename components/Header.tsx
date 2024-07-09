@@ -11,7 +11,7 @@ function Header() {
     about: ['소개', '/about', false],
     projects: ['프로젝트', '/projects', false],
     blog: ['블로그', '/blog', false],
-    contact: ['연락하기', 'https://open.kakao.com/o/sKGqxszg', true],
+    // contact: ['연락하기', 'https://open.kakao.com/o/sKGqxszg', true],
   };
 
   return (

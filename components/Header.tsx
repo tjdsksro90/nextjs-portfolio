@@ -10,7 +10,7 @@ function Header() {
     home: ['홈', '/', false],
     about: ['소개', '/about', false],
     projects: ['프로젝트', '/projects', false],
-    // blog: ['블로그', '/blog', false],
+    blog: ['블로그', '/blog', false],
     contact: ['연락하기', 'https://open.kakao.com/o/sKGqxszg', true],
   };
 
@@ -42,7 +42,7 @@ function Header() {
             const linkClass = isActive ? activeClass : passiveClass;
             if (item[2]) {
               return (
-                <Link legacyBehavior href={item[1]}>
+                <Link legacyBehavior href={item[1]} key={Object.keys(MENU_ITEM)[index]}>
                   <a className={linkClass} target="_blank" rel="noopener noreferrer">
                     {item[0]}
                   </a>

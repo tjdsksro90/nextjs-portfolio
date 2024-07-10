@@ -20,6 +20,7 @@ const nextConfig = withImages({
     disableStaticImages: true,
   },
   swcMinify: true,
+
 });
 
 export default withPlaiceholder(nextConfig);

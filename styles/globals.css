@@ -27,8 +27,16 @@ p {
   @apply bg-white dark:bg-slate-950;
 }
 
+.bg-primary-reverse {
+  @apply bg-slate-950 dark:bg-white;
+}
+
 .text-primary {
   @apply text-black dark:text-white;
+}
+
+.text-main {
+  @apply text-blue-600 dark:text-blue-300;
 }
 
 .btn-project {
@@ -39,6 +47,43 @@ p {
   @apply flex flex-col w-full text-blue-600 transition duration-300 transform border border-gray-300 rounded-xl hover:shadow-lg dark:border-gray-200/50 dark:hover:shadow-gray-400/40;
 }
 
+.blog-card {
+  @apply px-5 mb-10 transition duration-300 transform border border-gray-300 cursor-pointer py-7 rounded-xl hover:shadow-lg dark:border-gray-200/50 dark:hover:shadow-gray-400/40;
+}
+
 .pick-white {
   @apply text-white dark:text-white;
+}
+
+/* Custom Blog styles */
+@layer base {
+  h2[data-ke-size='size26'] {
+    @apply mb-2 text-xl font-bold;
+  }
+
+  blockquote[data-ke-style='style2'] {
+    @apply p-4 mb-4 italic bg-gray-100 border-l-4 border-gray-400 dark:bg-gray-800;
+  }
+
+  h3[data-ke-size='size23'],
+  h3[data-ke-size='size16'] {
+    @apply mb-2 text-lg font-semibold;
+  }
+
+  pre[data-ke-type='codeblock'] {
+    @apply max-w-full p-4 mb-2 overflow-auto bg-gray-100 dark:bg-gray-800 text-slate-500 dark:text-slate-300;
+  }
+
+  p[data-ke-size='size16'] {
+    @apply mb-2 text-black dark:text-white;
+  }
+  hr[data-ke-style='style6'] {
+    @apply my-6;
+  }
+  figure figcaption {
+    @apply mt-2 text-sm text-slate-500 dark:text-slate-300;
+  }
+  figure[data-ke-type='opengraph'] {
+    @apply hidden;
+  }
 }

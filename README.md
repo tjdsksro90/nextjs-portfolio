@@ -4,7 +4,7 @@
 
 깃허브 링크: https://github.com/tjdsksro90/nextjs-portfolio
 
-배포 링크: nextjs-portfolio-jet-mu.vercel.app
+배포 링크: https://nextjs-portfolio-jet-mu.vercel.app
 
 주제: SEO에 최적화된 웹 애플리케이션으로 NEXT.js와 TypeScript를 사용하여 개발 한 포트폴리오입니다.
 

@@ -1,20 +1,15 @@
 import Seo from '@/components/Seo';
+import BlogItemList from '@/components/blog/blog-item-list';
 import CommonLink from '@/components/common/link';
 import MainTitle from '@/components/common/main-title';
+import { BLOG_RSS_URL } from '@/config';
 import axios from 'axios';
 import { GetServerSideProps } from 'next';
 import Parser from 'rss-parser';
 
-type Post = {
-  title: string;
-  link: string;
-  contentSnippet: string;
-  isoDate: string;
-};
-
-type BlogProps = {
+interface BlogProps {
   posts: Post[];
-};
+}
 
 const Blog = ({ posts }: BlogProps) => {
   return (
@@ -22,34 +17,23 @@ const Blog = ({ posts }: BlogProps) => {
       <Seo title="Blog" />
       <MainTitle
         main="Blog"
-        sub={<CommonLink href={'https://gmrdlsrkswnl.tistory.com/rss'} text="블로그 링크 링크 바로가기" />}
+        sub={<CommonLink href={'https://gmrdlsrkswnl.tistory.com'} text="블로그 링크 링크 바로가기" />}
       />
-      <section className="flex flex-col items-center justify-center min-h-screen text-gray-600 body-font">
-        <ul>
-          {posts.map((post, index) => (
-            <li key={index}>
-              <a href={post.link}>{post.title}</a>
-              <p>{post.contentSnippet}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <BlogItemList posts={posts} />
     </div>
   );
 };
 
 export const getServerSideProps: GetServerSideProps<BlogProps> = async () => {
-  const BLOG_RSS_URL = 'https://gmrdlsrkswnl.tistory.com/rss'; // Replace with your Tistory blog RSS URL
   const parser = new Parser();
 
   try {
-    const response = await axios.get(BLOG_RSS_URL);
-
+    const response = await axios.get(BLOG_RSS_URL as string);
     const feed = await parser.parseString(response.data);
-    const posts: Post[] = feed.items.map((item: any) => ({
+    const posts: Post[] = feed.items.map((item: { [key: string]: string }) => ({
       title: item.title,
       link: item.link,
-      contentSnippet: item.contentSnippet || item['content:encodedSnippet'],
+      content: item.content || item['content:encodedSnippet'],
       isoDate: item.isoDate,
     }));
 

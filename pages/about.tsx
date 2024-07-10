@@ -1,10 +1,12 @@
 import Seo from '@/components/Seo';
-import CommonImage from '@/components/common/image';
 import MainTitle from '@/components/common/main-title';
+import person from '/public/me.jpg';
+import Image from 'next/image';
+import { Loading } from '@/components/common/loading';
 
 const About = () => {
   return (
-    <section className="container mx-auto text-gray-600 body-font min-h-screen px-5 md:px-14">
+    <section className="container min-h-screen px-5 mx-auto text-gray-600 body-font md:px-14">
       <Seo title="About" />
       <MainTitle main="About" />
       <div className="container flex flex-col px-5 py-24 mx-auto">
@@ -12,13 +14,24 @@ const About = () => {
           <div className="flex flex-col mt-10 sm:flex-row">
             <div className="text-center sm:w-1/3 sm:pr-8 sm:py-8">
               <div className="inline-flex items-center justify-center w-20 h-20 overflow-hidden text-gray-400 bg-gray-200 rounded-full">
-                <CommonImage
-                  src="/me.jpg"
-                  width={100}
-                  height={100}
-                  wrap="w-full h-full flex justify-center"
-                  className="object-cover"
-                />
+                {person ? (
+                  <div className="flex justify-center w-full h-full">
+                    <Image
+                      className="object-cover"
+                      src={person}
+                      alt="cover image"
+                      width={100}
+                      height={100}
+                      layout="responsive"
+                      objectFit="cover"
+                      quality={100}
+                      placeholder="blur"
+                      blurDataURL={person}
+                    />
+                  </div>
+                ) : (
+                  <Loading size={50} wrap="my-5" />
+                )}
               </div>
               <div className="flex flex-col items-center justify-center text-center">
                 <h3 className="mt-4 text-lg font-medium text-primary title-font">윤호준</h3>
@@ -34,7 +47,7 @@ const About = () => {
                 전공은 <span className="text-indigo-500">시각디자인</span>학과로 디자인 회사에서 4년정도 근무했습니다.
                 회사 내에 웹팀이 있었고, 웹팀과의 업무협업을 하면서 개발일에 관심을 가지게 되었습니다. 이후 개발 공부를
                 하게 되었고 <span className="text-indigo-500">UI/UX를 잘 고려</span>할 줄 알기 때문에 많은 의견을 내고
-                <span className="text-indigo-500">프로젝트의 퀄리티를 향상시키는데 많은 도움을 주는 개발자</span>라고
+                <span className="text-indigo-500"> 프로젝트의 퀄리티를 향상시키는데 많은 도움을 주는 개발자</span>라고
                 생각합니다.
               </p>
             </div>

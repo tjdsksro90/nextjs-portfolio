@@ -17,7 +17,7 @@ const Blog = ({ posts }: BlogProps) => {
       <Seo title="Blog" />
       <MainTitle
         main="Blog"
-        sub={<CommonLink href={'https://gmrdlsrkswnl.tistory.com'} text="블로그 링크 링크 바로가기" />}
+        sub={<CommonLink href={'https://gmrdlsrkswnl.tistory.com'} text="블로그 링크 바로가기" />}
       />
       <BlogItemList posts={posts} />
     </div>

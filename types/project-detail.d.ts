@@ -44,3 +44,8 @@ export interface ProjectDetailType {
   paragraph: { rich_text: BlockText[] };
   image: { external: { url: string } };
 }
+
+interface ProjectDetailProps {
+  blocksData: ProjectDetailType[];
+  pagesData: ProjectResultType;
+}

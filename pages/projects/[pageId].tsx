@@ -3,20 +3,15 @@ import MainTitle from '@/components/common/main-title';
 import BlockRender from '@/components/projects/detail/blocks/detail-block-render';
 import FileRender from '@/components/projects/detail/files/detail-file-render';
 import PageRender from '@/components/projects/detail/pages/detail-page-render';
+import ProjectDetailComponent from '@/components/projects/detail/project-detail';
 import { TOKEN } from '@/config';
-import { ProjectDetailType } from '@/types/project-detail';
-import { ProjectResultType } from '@/types/projects';
+import { ProjectDetailProps } from '@/types/project-detail';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
 
-interface ProjectDetailProps {
-  blocksData: ProjectDetailType[];
-  pagesData: ProjectResultType;
-}
-
 const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
   return (
-    <div className="container min-h-screen mx-auto mb-10 px-5 md:px-14">
+    <div className="container min-h-screen px-5 mx-auto mb-10 md:px-14">
       <Seo title="Project Detail" />
       <MainTitle
         main="Project Detail"
@@ -41,14 +36,7 @@ const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
           </span>
         }
       />
-      <ul>
-        <PageRender key={pagesData.id} data={pagesData} />
-        <div className="w-full h-px my-16 bg-slate-500 dark:bg-slate-50"></div>
-        {blocksData.map(block => (
-          <BlockRender key={block.id} block={block} />
-        ))}
-        <FileRender key={pagesData.id} data={pagesData} />
-      </ul>
+      <ProjectDetailComponent blocksData={blocksData} pagesData={pagesData} />
     </div>
   );
 };

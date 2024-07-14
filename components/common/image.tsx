@@ -42,18 +42,15 @@ const CommonImage = ({ src, className, wrap, width, height, loadingSize = 50 }: 
           });
         } else {
           console.error('Invalid data structure:', data);
-          // Handle the error appropriately
         }
       } catch (error) {
         console.error('Failed to fetch image data:', error);
-        // Handle the error appropriately
       }
     }
 
     fetchImageData();
   }, [src]);
 
-  // if (!imageData.isLoaded) return <p>Loading...</p>;
   if (!imageData.isLoaded) return <Loading size={loadingSize} wrap="my-5" />;
 
   return (

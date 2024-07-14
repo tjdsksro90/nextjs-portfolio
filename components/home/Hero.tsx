@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import Animation from './Animation';
+import TitleAnimaion from '../common/title-animaion';
 
 export default function Hero() {
   return (
     <>
       <div className="flex flex-col items-center mb-16 text-center lg:flex-grow md:w-1/2 lg:pr-24 md:pr-14 md:items-start md:text-left md:mb-0">
         <h1 className="mb-4 text-3xl font-bold title-font md:text-4xl/tight xl:text-5xl/tight">
-          안녕하세요!
-          <br />
-          윤호준입니다.
+          <TitleAnimaion text="안녕하세요!#윤호준입니다." />
         </h1>
         <p className="mb-8 leading-relaxed break-keep">
           저의 포트폴리오에 오신 것을 환영합니다 - 현재 사이트는 NEXTJS로 개발되있습니다. 여가 시간에는 사이드

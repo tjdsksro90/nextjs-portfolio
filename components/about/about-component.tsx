@@ -1,6 +1,7 @@
 import person from '/public/me.jpg';
 import Image from 'next/image';
 import { Loading } from '@/components/common/loading';
+import TitleAnimaion from '../common/title-animaion';
 
 const AboutComponent = () => {
   return (
@@ -36,9 +37,10 @@ const AboutComponent = () => {
           </div>
           <div className="pt-4 mt-4 text-center border-t border-gray-200 sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l sm:border-t-0 sm:mt-0 sm:text-left">
             <p className="mb-4 text-lg leading-relaxed break-keep">
-              <span className="block mb-4 text-2xl font-semibold leading-normal text-primary">
-                경험은 어디든 도움이 된다고 생각하는 개발자
-              </span>
+              <TitleAnimaion
+                text="경험은 어디든 도움이 된다고 생각하는 개발자"
+                className="block mb-4 text-2xl font-semibold leading-normal text-primary"
+              />
               전공은 <span className="text-indigo-500">시각디자인</span>학과로 디자인 회사에서 4년정도 근무했습니다.
               회사 내에 웹팀이 있었고, 웹팀과의 업무협업을 하면서 개발일에 관심을 가지게 되었습니다. 이후 개발 공부를
               하게 되었고 <span className="text-indigo-500">UI/UX를 잘 고려</span>할 줄 알기 때문에 많은 의견을 내고

@@ -1,9 +1,28 @@
 import withPlaiceholder from '@plaiceholder/next';
-import withImages from 'next-images';
 /** @type {import('next').NextConfig} */
-
-const nextConfig = withImages({
+const nextConfig = {
   reactStrictMode: true,
+  webpack(config) {
+    config.module.rules.push(
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+            },
+          },
+        ],
+      },
+      {
+        test: /\.(jpg|png|gif|ico|webp|avif)$/i,
+        use: ['url-loader'],
+      },
+    );
+
+    return config;
+  },
   experimental: {
     appDir: true,
   },
@@ -20,7 +39,6 @@ const nextConfig = withImages({
     disableStaticImages: true,
   },
   swcMinify: true,
-
-});
+};
 
 export default withPlaiceholder(nextConfig);

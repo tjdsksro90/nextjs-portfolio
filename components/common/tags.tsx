@@ -13,15 +13,15 @@ interface Props {
 const CommonTags = ({ tags, wrap }: Props) => {
   return (
     <div className={wrap}>
-      {tags.map(aTag => (
+      {tags.map(tag => (
         <h6
           className={classNames(
             'px-2 py-1 rounded-md w-30',
-            getBgColorClassName(aTag.color), // 동적 클래스 설정
+            getBgColorClassName(tag.color), // 동적 클래스 설정
           )}
-          key={aTag.id}
+          key={tag.id}
         >
-          {aTag.name}
+          {tag.name}
         </h6>
       ))}
     </div>

@@ -40,7 +40,7 @@ const TitleAnimaion = ({ text, className }: Props) => {
       {characters.map((char, index) =>
         // <br/>은 잘 안쓰는 #으로 구분
         char.char === '#' ? (
-          <br key={index} />
+          <br key={char.key} />
         ) : (
           <span
             key={char.key}

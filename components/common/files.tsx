@@ -9,7 +9,7 @@ const CommonFiles = ({ files }: Props) => {
   return (
     <div className="">
       {files.map(aFile => (
-        <CommonImage src={aFile.file.url} wrap="w-[710px] max-w-full mb-2" width={710} height={710} />
+        <CommonImage src={aFile.file.url} wrap="w-[710px] max-w-full mb-2" />
       ))}
     </div>
   );

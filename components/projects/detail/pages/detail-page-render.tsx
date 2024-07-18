@@ -24,12 +24,7 @@ const PageRender = ({ data }: Props) => {
 
   return (
     <div className="container mx-auto">
-      <CommonImage
-        src={imgSrc}
-        wrap="w-[500px] max-w-full border rounded-xl overflow-hidden"
-        width={500}
-        height={500}
-      />
+      <CommonImage src={imgSrc} wrap="w-[500px] max-w-full border rounded-xl overflow-hidden" />
       <div className="flex flex-col flex-1 py-4">
         <CommonTitle title={title} />
         <CommonDescription description={description} />

@@ -7,12 +7,10 @@ interface Props {
   wrap?: string;
   src: string;
   className?: string;
-  width: number;
-  height: number;
   loadingSize?: number;
 }
 
-const CommonImage = ({ src, className, wrap, width, height, loadingSize = 50 }: Props) => {
+const CommonImage = ({ src, className, wrap, loadingSize = 50 }: Props) => {
   const [imageData, setImageData] = useState({
     src: '',
     blurDataURL: '',
@@ -22,7 +20,7 @@ const CommonImage = ({ src, className, wrap, width, height, loadingSize = 50 }: 
   });
 
   useEffect(() => {
-    async function fetchImageData() {
+    const fetchImageData = async () => {
       try {
         const response = await fetch('/api/image', {
           method: 'POST',
@@ -46,7 +44,7 @@ const CommonImage = ({ src, className, wrap, width, height, loadingSize = 50 }: 
       } catch (error) {
         console.error('Failed to fetch image data:', error);
       }
-    }
+    };
 
     fetchImageData();
   }, [src]);

@@ -24,9 +24,10 @@ const ProjectItem = ({ data }: Props) => {
   const end = data.properties.WorkPeriod.date.end;
   const site = data.properties.Site.url;
   const site2 = data.properties.Site2.url;
+
   return (
     <div className="project-card">
-      <CommonImage src={imgSrc} width={1920} height={1080} className="rounded-t-xl" />
+      <CommonImage src={imgSrc} className="rounded-t-xl" />
       <div className="flex flex-col flex-1 p-4">
         <CommonTitle title={title} />
         <CommonDescription description={description} />

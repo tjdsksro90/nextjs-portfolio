@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import { useRouter } from 'next/router';
+import MainIcon from '/public/icons/main.svg';
 
 type MenuItemType = [string, string, boolean];
 
@@ -17,22 +18,15 @@ function Header() {
   return (
     <header className="text-gray-600 body-font">
       <div className="flex flex-col flex-wrap items-center p-5 md:container md:mx-auto md:flex-row">
-        <Link href="/" legacyBehavior>
-          <a className="flex items-center mb-4 font-medium title-font md:mb-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-10 h-10 p-2 text-white bg-indigo-500 rounded-full"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-            </svg>
-            <span className="ml-3 text-xl">포트폴리오</span>
-          </a>
+        <Link href="/" className="flex items-center mb-4 font-medium title-font md:mb-0">
+          <MainIcon
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-10 h-10 p-2 text-white bg-indigo-500 rounded-full"
+          />
+          <span className="ml-3 text-xl">포트폴리오</span>
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
           {Object.values(MENU_ITEM).map((item, index) => {

@@ -7,6 +7,7 @@ import CommonDescription from '../common/description';
 import CommonLink from '../common/link';
 import CommonPeriod from '../common/period';
 import CommonTags from '../common/tags';
+import ArrowIcon from '/public/icons/arrow.svg';
 
 interface Props {
   data: ProjectResultType;
@@ -45,16 +46,14 @@ const ProjectItem = ({ data }: Props) => {
           >
             <span>자세히 보기</span>
             <span className="w-5">
-              <svg
-                fill="none"
+              <ArrowIcon
+                width="auto"
+                height="auto"
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
+              />
             </span>
           </Link>
         </div>

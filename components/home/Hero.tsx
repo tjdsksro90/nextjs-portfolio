@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Animation from './Animation';
 import TitleAnimaion from '../common/title-animaion';
+import ArrowIcon from '/public/icons/arrow.svg';
 
 export default function Hero() {
   return (
@@ -17,16 +18,14 @@ export default function Hero() {
           <Link className="flex items-center gap-2 btn-project" href={'/projects'}>
             <span>프로젝트 보러가기</span>
             <span className="w-5">
-              <svg
-                fill="none"
+              <ArrowIcon
+                width="auto"
+                height="auto"
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7"></path>
-              </svg>
+              />
             </span>
           </Link>
         </div>

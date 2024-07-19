@@ -8,6 +8,7 @@ import { TOKEN } from '@/config';
 import { ProjectDetailProps } from '@/types/project-detail';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import Link from 'next/link';
+import ArrowIcon from '/public/icons/arrow.svg';
 
 const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
   return (
@@ -20,16 +21,14 @@ const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
             프로젝트 상세내용 화면입니다.
             <Link className="flex items-center gap-1 mt-1 font-semibold" href={`/projects`}>
               <span className="w-5 rotate-180">
-                <svg
-                  fill="none"
+                <ArrowIcon
+                  width="auto"
+                  height="auto"
                   stroke="currentColor"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
+                />
               </span>
               <span>뒤로가기</span>
             </Link>

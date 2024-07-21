@@ -3,7 +3,7 @@ import Animation from './Animation';
 import TitleAnimaion from '../common/title-animaion';
 import ArrowIcon from '/public/icons/arrow.svg';
 
-export default function Hero() {
+const Hero = () => {
   return (
     <>
       <div className="flex flex-col items-center mb-16 text-center lg:flex-grow md:w-1/2 lg:pr-24 md:pr-14 md:items-start md:text-left md:mb-0">
@@ -35,4 +35,6 @@ export default function Hero() {
       </div>
     </>
   );
-}
+};
+
+export default Hero;

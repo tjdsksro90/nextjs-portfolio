@@ -1,6 +1,6 @@
-import { useTheme } from "next-themes";
+import { useTheme } from 'next-themes';
 
-function ThemeToggle() {
+const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -8,7 +8,7 @@ function ThemeToggle() {
       className="relative inline-flex items-center w-10 h-10 px-3 py-3 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-50 md:mt-0 hover:text-orange-500 dark:bg-slate-600 dark:text-slate-400 dark:hover:text-yellow-300 dark:hover:bg-slate-700"
       type="button"
       onClick={() => {
-        setTheme(theme === "dark" ? "light" : "dark");
+        setTheme(theme === 'dark' ? 'light' : 'dark');
       }}
     >
       <svg
@@ -35,6 +35,6 @@ function ThemeToggle() {
       </svg>
     </button>
   );
-}
+};
 
 export default ThemeToggle;

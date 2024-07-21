@@ -5,7 +5,7 @@ import MainIcon from '/public/icons/main.svg';
 
 type MenuItemType = [string, string, boolean];
 
-function Header() {
+const Header = () => {
   const router = useRouter();
   const MENU_ITEM: Record<string, MenuItemType> = {
     home: ['홈', '/', false],
@@ -55,6 +55,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

@@ -1,9 +1,9 @@
-import Layout from "@/components/Layout";
-import "@/styles/globals.css";
-import { ThemeProvider } from "next-themes";
-import type { AppProps } from "next/app";
+import Layout from '@/components/Layout';
+import '@/styles/globals.css';
+import { ThemeProvider } from 'next-themes';
+import type { AppProps } from 'next/app';
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   return (
     <ThemeProvider attribute="class">
       <Layout>
@@ -11,4 +11,6 @@ export default function App({ Component, pageProps }: AppProps) {
       </Layout>
     </ThemeProvider>
   );
-}
+};
+
+export default App;

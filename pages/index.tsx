@@ -1,7 +1,7 @@
 import Seo from '@/components/Seo';
 import Hero from '@/components/home/Hero';
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="container px-5 mx-auto md:px-14">
       <Seo title="Home" />
@@ -12,4 +12,6 @@ export default function Home() {
       </section>
     </div>
   );
-}
+};
+
+export default Home;

@@ -1,7 +1,7 @@
 import Seo from '@/components/Seo';
 import Link from 'next/link';
 
-export default function NotFound() {
+const NotFound = () => {
   return (
     <div className="container flex items-center justify-center min-h-screen mx-auto">
       <Seo title="404" />
@@ -21,4 +21,6 @@ export default function NotFound() {
       </section>
     </div>
   );
-}
+};
+
+export default NotFound;

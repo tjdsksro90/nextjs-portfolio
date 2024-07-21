@@ -1,8 +1,5 @@
 import Seo from '@/components/Seo';
 import MainTitle from '@/components/common/main-title';
-import BlockRender from '@/components/projects/detail/blocks/detail-block-render';
-import FileRender from '@/components/projects/detail/files/detail-file-render';
-import PageRender from '@/components/projects/detail/pages/detail-page-render';
 import ProjectDetailComponent from '@/components/projects/detail/project-detail';
 import { TOKEN } from '@/config';
 import { ProjectDetailProps } from '@/types/project-detail';

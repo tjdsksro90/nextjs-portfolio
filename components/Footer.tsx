@@ -4,7 +4,7 @@ import GithubIcon from '/public/icons/github.svg';
 import TistoryIcon from '/public/icons/tistory.svg';
 import InstagramIcon from '/public/icons/instagram.svg';
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="body-font">
       <div>
@@ -55,6 +55,6 @@ function Footer() {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

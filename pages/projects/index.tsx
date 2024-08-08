@@ -63,7 +63,7 @@ export const getStaticProps: GetStaticProps = async () => {
     console.error('Error fetching data:', error); // 에러 로그 추가
     return {
       props: {
-        projects: [],
+        projectsList: [],
       },
     };
   }

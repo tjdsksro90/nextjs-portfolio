@@ -48,6 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
     },
     body: JSON.stringify({ page_size: 100 }),
   };
+  
   try {
     const res = await fetch(`https://api.notion.com/v1/databases/${DATABASE_ID}/query`, options);
 

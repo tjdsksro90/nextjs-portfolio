@@ -24,7 +24,8 @@ const ProjectItem = ({ data }: Props) => {
   const start = data.properties.WorkPeriod.date.start;
   const end = data.properties.WorkPeriod.date.end;
   const site = data.properties.Site.url;
-  const site2 = data.properties.Site2.url;
+  const site2 = data.properties.Site2?.url;
+  const site3 = data.properties.Site3?.url;
 
   return (
     <div className="project-card">
@@ -34,6 +35,7 @@ const ProjectItem = ({ data }: Props) => {
         <CommonDescription description={description} />
         {site && <CommonLink href={site} text="사이트 링크 바로가기" />}
         {site2 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
+        {site3 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
         {github && <CommonLink href={github} text="깃허브 바로가기" />}
         {youtube && <CommonLink href={github} text="유튜브 시연영상 보러가기" />}
         <CommonPeriod start={start} end={end} />
@@ -41,8 +43,7 @@ const ProjectItem = ({ data }: Props) => {
         <div className="mt-auto text-right">
           <Link
             className="flex items-center justify-end gap-1 mt-5 font-semibold text-indigo-500"
-            href={`/projects/${title}?id=${id}`}
-            as={`projects/${title}`}
+            href={`/projects/${encodeURIComponent(title)}`}
           >
             <span>자세히 보기</span>
             <span className="w-5">

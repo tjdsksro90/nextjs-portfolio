@@ -26,10 +26,55 @@ interface PropertiesType {
   Files: {
     files: PropertiesFilesType[] | [];
   };
+  FilesText?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSize?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesFirst: {
+    files: PropertiesFilesType[] | [];
+  };
+  FilesFirstText?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesFirstSize?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSlide: {
+    files: PropertiesFilesType[] | [];
+  };
+  FilesSlideText?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSlideSize?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSlide2: {
+    files: PropertiesFilesType[] | [];
+  };
+  FilesSlideText2?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSlideSize2?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSlide3: {
+    files: PropertiesFilesType[] | [];
+  };
+  FilesSlideText3?: {
+    rich_text: { plain_text: string }[];
+  };
+  FilesSlideSize3?: {
+    rich_text: { plain_text: string }[];
+  };
   Site: {
     url: string;
   };
   Site2: {
+    url: string;
+  };
+  Site3: {
     url: string;
   };
   Github: {

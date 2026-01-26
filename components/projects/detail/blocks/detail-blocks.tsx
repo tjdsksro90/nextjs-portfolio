@@ -26,12 +26,12 @@ export const BlockDetail = ({ richText }: Props) => (
 
       return text.href ? (
         <Link {...commonProps} href={text.href} legacyBehavior>
-          <a target="_blank" rel="noopener noreferrer">
+          <a target="_blank" rel="noopener noreferrer" style={{ whiteSpace: 'pre-line' }}>
             {text.plain_text}
           </a>
         </Link>
       ) : (
-        <span {...commonProps}>{text.plain_text}</span>
+        <span {...commonProps} style={{ whiteSpace: 'pre-line' }}>{text.plain_text}</span>
       );
     })}
   </>

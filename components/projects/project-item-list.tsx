@@ -8,6 +8,7 @@ interface Props {
 
 const ProjectItemList = ({ list }: Props) => {
   const [isSingleColumn, setIsSingleColumn] = useState(false);
+  const reversedList = [...list].reverse();
 
   useEffect(() => {
     const updateColumnLayout = () => {
@@ -26,18 +27,18 @@ const ProjectItemList = ({ list }: Props) => {
   return (
     <>
       {isSingleColumn ? (
-        list.map(item => <ProjectItem key={item.id} data={item} />)
+        reversedList.map(item => <ProjectItem key={item.id} data={item} />)
       ) : (
         <>
           <div className="flex flex-col gap-8">
-            {list
+            {reversedList
               .filter((_, index) => index % 2 === 0)
               .map(item => (
                 <ProjectItem key={item.id} data={item} />
               ))}
           </div>
           <div className="flex flex-col gap-8">
-            {list
+            {reversedList
               .filter((_, index) => index % 2 !== 0)
               .map(item => (
                 <ProjectItem key={item.id} data={item} />

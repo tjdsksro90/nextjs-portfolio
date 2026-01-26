@@ -47,5 +47,5 @@ export interface ProjectDetailType {
 
 interface ProjectDetailProps {
   blocksData: ProjectDetailType[];
-  pagesData: ProjectResultType;
+  pagesData: ProjectResultType | null;
 }

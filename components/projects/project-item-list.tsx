@@ -7,45 +7,80 @@ interface Props {
 }
 
 const ProjectItemList = ({ list }: Props) => {
-  const [isSingleColumn, setIsSingleColumn] = useState(false);
+  const [columnCount, setColumnCount] = useState(1);
   const reversedList = [...list].reverse();
 
   useEffect(() => {
     const updateColumnLayout = () => {
-      setIsSingleColumn(window.innerWidth < 768);
-      const shouldBeSingleColumn = window.innerWidth < 768;
-      if (isSingleColumn !== shouldBeSingleColumn) {
-        setIsSingleColumn(shouldBeSingleColumn);
+      const width = window.innerWidth;
+      // sm: 1개 (< 640px), md: 2개 (640px ~ 1024px), lg: 3개 (>= 1024px)
+      if (width < 640) {
+        setColumnCount(1);
+      } else if (width < 1024) {
+        setColumnCount(2);
+      } else {
+        setColumnCount(3);
       }
     };
 
     updateColumnLayout();
     window.addEventListener('resize', updateColumnLayout);
     return () => window.removeEventListener('resize', updateColumnLayout);
-  }, [isSingleColumn]);
+  }, []);
 
+  if (columnCount === 1) {
+    return (
+      <>
+        {reversedList.map(item => <ProjectItem key={item.id} data={item} />)}
+      </>
+    );
+  }
+
+  if (columnCount === 2) {
+    return (
+      <>
+        <div className="flex flex-col gap-8">
+          {reversedList
+            .filter((_, index) => index % 2 === 0)
+            .map(item => (
+              <ProjectItem key={item.id} data={item} />
+            ))}
+        </div>
+        <div className="flex flex-col gap-8">
+          {reversedList
+            .filter((_, index) => index % 2 !== 0)
+            .map(item => (
+              <ProjectItem key={item.id} data={item} />
+            ))}
+        </div>
+      </>
+    );
+  }
+
+  // columnCount === 3
   return (
     <>
-      {isSingleColumn ? (
-        reversedList.map(item => <ProjectItem key={item.id} data={item} />)
-      ) : (
-        <>
-          <div className="flex flex-col gap-8">
-            {reversedList
-              .filter((_, index) => index % 2 === 0)
-              .map(item => (
-                <ProjectItem key={item.id} data={item} />
-              ))}
-          </div>
-          <div className="flex flex-col gap-8">
-            {reversedList
-              .filter((_, index) => index % 2 !== 0)
-              .map(item => (
-                <ProjectItem key={item.id} data={item} />
-              ))}
-          </div>
-        </>
-      )}
+      <div className="flex flex-col gap-8">
+        {reversedList
+          .filter((_, index) => index % 3 === 0)
+          .map(item => (
+            <ProjectItem key={item.id} data={item} />
+          ))}
+      </div>
+      <div className="flex flex-col gap-8">
+        {reversedList
+          .filter((_, index) => index % 3 === 1)
+          .map(item => (
+            <ProjectItem key={item.id} data={item} />
+          ))}
+      </div>
+      <div className="flex flex-col gap-8">
+        {reversedList
+          .filter((_, index) => index % 3 === 2)
+          .map(item => (
+            <ProjectItem key={item.id} data={item} />
+          ))}
+      </div>
     </>
   );
 };

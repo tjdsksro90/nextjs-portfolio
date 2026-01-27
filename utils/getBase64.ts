@@ -2,6 +2,17 @@ import fetch from 'node-fetch';
 import { getPlaiceholder } from 'plaiceholder';
 
 const getBase64 = async (src: string, requestHeaders?: any) => {
+  // Notion S3 이미지는 서버 사이드에서 fetch 불가 (서명된 URL)
+  // 클라이언트에서 직접 처리하도록 빈 데이터 반환
+  if (src.includes('prod-files-secure.s3.us-west-2.amazonaws.com') || 
+      src.includes('s3.us-west-2.amazonaws.com')) {
+    console.log('Notion image detected, skipping server-side processing:', src);
+    return {
+      base64: '',
+      img: { src, height: 0, width: 0 },
+    };
+  }
+
   let buffer;
 
   try {

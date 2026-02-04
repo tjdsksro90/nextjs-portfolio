@@ -121,6 +121,7 @@ const CommonImage = ({ src, className, wrap, loadingSize = 50 }: Props) => {
         quality={100}
         placeholder={imageData.blurDataURL ? "blur" : "empty"}
         blurDataURL={imageData.blurDataURL || undefined}
+        unoptimized={isNotionImage}
       />
     </div>
   );

@@ -1,33 +1,38 @@
 'use client'; // 모달 기능을 위해 'use client'가 필요. 클릭 이벤트와 상태 관리를 위해 필수
 
 import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination, Mousewheel } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import { PropertiesFilesType } from '@/types/projects';
 import CommonImage from './image';
 
 interface Props {
   files: PropertiesFilesType[] | [];
-  size?: string; 
+  size?: string;
 }
 
 const CommonFilesSlide = ({ files, size }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
-  // FilesSize 파싱
   const parseSize = (sizeStr?: string) => {
-    if (!sizeStr) return { width: 'auto', height: 'auto' };
-    
+    if (!sizeStr) return { width: '80%', height: 'auto', maxWidth: 320 };
     const [width, height] = sizeStr.split(',').map(s => s.trim());
     return {
-      width: width || 'auto',
-      height: height || 'auto',
+      width: width ? `${width}px` : '80%',
+      height: height ? `${height}px` : 'auto',
+      maxWidth: width ? parseInt(width, 10) : 320,
     };
   };
 
-  const { width, height } = parseSize(size);
-  const widthStyle = width === 'auto' ? 'auto' : `${width}px`;
-  const heightStyle = height === 'auto' ? 'auto' : `${height}px`;
+  const { width, height, maxWidth } = parseSize(size);
+  const slideStyle = {
+    width: width,
+    maxWidth: `${maxWidth}px`,
+    height: height,
+  };
 
-  // ESC 키로 모달 닫기
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && selectedIndex !== null) {
@@ -37,7 +42,7 @@ const CommonFilesSlide = ({ files, size }: Props) => {
 
     if (selectedIndex !== null) {
       document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden'; // 스크롤 방지
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
@@ -46,7 +51,6 @@ const CommonFilesSlide = ({ files, size }: Props) => {
     };
   }, [selectedIndex]);
 
-  // 이전/다음 이미지
   const handlePrevious = (e: React.MouseEvent) => {
     e.stopPropagation();
     if (selectedIndex !== null && selectedIndex > 0) {
@@ -67,31 +71,35 @@ const CommonFilesSlide = ({ files, size }: Props) => {
 
   return (
     <>
-      <div className="mb-4 overflow-x-auto">
-        <div className="flex gap-2" style={{ width: 'max-content' }}>
-          {files.map((aFile, index) => (
-            <div
-              key={aFile.file?.url || `file-${index}`}
-              className="flex-shrink-0 cursor-pointer hover:opacity-80 transition-opacity"
-              style={{ width: widthStyle, height: heightStyle }}
-              onClick={() => setSelectedIndex(index)}
-            >
-              <CommonImage 
-                src={aFile.file.url} 
-                wrap="w-full h-full"
-              />
+      <Swiper
+        slidesPerView="auto"
+        centeredSlides={true}
+        spaceBetween={30}
+        mousewheel={{ enabled: true }}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination, Mousewheel]}
+        className="files-slide-swiper mySwiper mb-8"
+      >
+        {files.map((aFile, index) => (
+          <SwiperSlide
+            key={aFile.file?.url || `file-${index}`}
+            style={slideStyle}
+            onClick={() => setSelectedIndex(index)}
+          >
+            <div className="w-full h-full flex items-center justify-center overflow-hidden">
+              <CommonImage src={aFile.file.url} wrap="w-full h-full" />
             </div>
-          ))}
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
 
-      {/* 확대 모달 */}
       {selectedIndex !== null && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
           onClick={() => setSelectedIndex(null)}
         >
-          {/* 닫기 버튼 */}
           <button
             className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-10"
             onClick={() => setSelectedIndex(null)}
@@ -99,7 +107,6 @@ const CommonFilesSlide = ({ files, size }: Props) => {
             ✕
           </button>
 
-          {/* 이전 버튼 */}
           {selectedIndex > 0 && (
             <button
               className="absolute left-4 text-white text-4xl hover:text-gray-300 z-10"
@@ -109,7 +116,6 @@ const CommonFilesSlide = ({ files, size }: Props) => {
             </button>
           )}
 
-          {/* 다음 버튼 */}
           {selectedIndex < files.length - 1 && (
             <button
               className="absolute right-4 text-white text-4xl hover:text-gray-300 z-10"
@@ -119,7 +125,6 @@ const CommonFilesSlide = ({ files, size }: Props) => {
             </button>
           )}
 
-          {/* 확대된 이미지 */}
           <div
             className="max-w-[90vw] max-h-[90vh] flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
@@ -131,7 +136,6 @@ const CommonFilesSlide = ({ files, size }: Props) => {
             />
           </div>
 
-          {/* 이미지 인덱스 표시 */}
           <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
             {selectedIndex + 1} / {files.length}
           </div>
@@ -142,4 +146,3 @@ const CommonFilesSlide = ({ files, size }: Props) => {
 };
 
 export default CommonFilesSlide;
-

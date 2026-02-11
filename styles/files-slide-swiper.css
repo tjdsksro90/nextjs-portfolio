@@ -1,0 +1,51 @@
+/* Swiper Centered Auto 스타일 */
+.files-slide-swiper {
+  border: 1px solid white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0;
+}
+
+.files-slide-swiper .swiper-wrapper {
+  order: 1;
+  width: 100%;
+}
+
+.files-slide-swiper .swiper-pagination {
+  position: relative;
+  bottom: auto;
+  left: auto;
+  width: 100%;
+  margin-top: 16px;
+  order: 2;
+}
+
+.files-slide-swiper .swiper-slide {
+  width: 80%;
+  max-width: 320px;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.files-slide-swiper .swiper-slide:hover {
+  opacity: 0.85;
+}
+
+.files-slide-swiper .swiper-slide-active {
+  /* 활성 슬라이드 강조 (선택적) */
+}
+
+.files-slide-swiper .swiper-pagination-bullet {
+  background: #94a3b8;
+  opacity: 0.6;
+}
+
+.files-slide-swiper .swiper-pagination-bullet-active {
+  background: #6366f1;
+  opacity: 1;
+}

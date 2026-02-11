@@ -18,57 +18,59 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
       {pagesData.properties?.FilesFirst?.files?.length > 0 && (
         <div className="pb-10"></div>
       )}
-      <FileRender key={`filesFirst-top-${pagesData.id}`} data={pagesData} fileType="FilesFirst" />
       {pagesData.properties?.FilesFirstText?.rich_text?.[0]?.plain_text && (
         <li key={`filesFirstText-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesFirstText.rich_text[0].plain_text}
-            className="my-4 text-base"
+            className="my-4 text-base italic"
           />
         </li>
       )}
-      <FileRender key={`filesSlide-${pagesData.id}`} data={pagesData} fileType="FilesSlide" />
+      <FileRender key={`filesFirst-top-${pagesData.id}`} data={pagesData} fileType="FilesFirst" />
       {pagesData.properties?.FilesSlideText?.rich_text?.[0]?.plain_text && (
         <li key={`filesSlideText-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesSlideText.rich_text[0].plain_text}
-            className="my-4 text-base"
+            className="my-4 text-base italic"
           />
         </li>
       )}
-      <FileRender key={`filesSlide2-${pagesData.id}`} data={pagesData} fileType="FilesSlide2" />
+      <FileRender key={`filesSlide-${pagesData.id}`} data={pagesData} fileType="FilesSlide" />
       {pagesData.properties?.FilesSlideText2?.rich_text?.[0]?.plain_text && (
         <li key={`filesSlide2Text-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesSlideText2.rich_text[0].plain_text}
-            className="my-4 text-base"
+            className="my-4 text-base italic"
           />
         </li>
       )}
-      <FileRender key={`filesSlide3-${pagesData.id}`} data={pagesData} fileType="FilesSlide3" />
+      <FileRender key={`filesSlide2-${pagesData.id}`} data={pagesData} fileType="FilesSlide2" />
       {pagesData.properties?.FilesSlideText3?.rich_text?.[0]?.plain_text && (
         <li key={`filesSlide3Text-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesSlideText3.rich_text[0].plain_text}
-            className="my-4 text-base"
+            className="my-4 text-base italic"
           />
         </li>
       )}
+      <FileRender key={`filesSlide3-${pagesData.id}`} data={pagesData} fileType="FilesSlide3" />
+      
       {blocksData && blocksData.map(block => (
         <BlockRender key={block.id} block={block} />
       ))}
       {pagesData.properties?.Files?.files?.length > 0 && (
         <div className="mt-10"></div>
       )}
-      <FileRender key={`files-bottom-${pagesData.id}`} data={pagesData} />
       {pagesData.properties?.FilesText?.rich_text?.[0]?.plain_text && (
         <li key={`filesText-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesText.rich_text[0].plain_text}
-            className="my-4 text-base"
+            className="my-4 text-base italic"
           />
         </li>
       )}
+      <FileRender key={`files-bottom-${pagesData.id}`} data={pagesData} />
+      
     </ul>
   );
 };

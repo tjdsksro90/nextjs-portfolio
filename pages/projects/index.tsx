@@ -1,6 +1,6 @@
 import Seo from '@/components/Seo';
 import { DATABASE_ID, TOKEN } from '@/config';
-import { GetStaticProps } from 'next';
+import { GetServerSideProps } from 'next';
 import { ProjectResultType } from '@/types/projects';
 import ProjectItemList from '@/components/projects/project-item-list';
 import MainTitle from '@/components/common/main-title';
@@ -36,8 +36,8 @@ const Projects = ({ projectsList }: Props) => {
 
 export default Projects;
 
-// 빌드 타임에 호출
-export const getStaticProps: GetStaticProps = async () => {
+// 매 요청마다 서버에서 호출 (SSR)
+export const getServerSideProps: GetServerSideProps = async () => {
   const options = {
     method: 'POST',
     headers: {

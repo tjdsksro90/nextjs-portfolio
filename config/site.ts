@@ -1,11 +1,10 @@
-export const DEFAULT_PORT = process.env.PORT || 3000;
-export const LOCAL_BASE_URL = `http://localhost:${DEFAULT_PORT}`;
+import { LOCAL_BASE_URL, NEXT_PUBLIC_BASE_URL } from '@/config';
 
 export const SITE_CONFIG = {
   title: 'Portfolio',
   year: 2026,
   themeUrl: 'https://tailwindcss.com/',
-  baseUrl: process.env.NEXT_PUBLIC_BASE_URL || LOCAL_BASE_URL,
+  baseUrl: NEXT_PUBLIC_BASE_URL || LOCAL_BASE_URL,
 } as const;
 
 export const SOCIAL_LINKS = {

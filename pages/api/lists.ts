@@ -1,15 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
-import { TOKEN, DATABASE_ID } from '@/config/index';
-import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/constants/api';
+import { DATABASE_ID } from '@/config';
+import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/config/api';
 
 // 테스트용 강제 지연 함수
 // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  console.log('TOKEN Check:', process.env.NOTION_TOKEN ? 'EXISTS' : 'UNDEFINED');
-  console.log('DATABASE_ID Check:', DATABASE_ID);
-
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }

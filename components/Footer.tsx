@@ -4,7 +4,7 @@ import GithubIcon from '/public/icons/github.svg';
 import TistoryIcon from '/public/icons/tistory.svg';
 import InstagramIcon from '/public/icons/instagram.svg';
 import CommonLink from './common/link';
-import { SITE_CONFIG, SOCIAL_LINKS } from '@/constants/site';
+import { SITE_CONFIG, SOCIAL_LINKS } from '@/config/site';
 
 const Footer = () => {
   return (

@@ -2,7 +2,7 @@ import Link from 'next/link';
 import ThemeToggle from './ThemeToggle';
 import { useRouter } from 'next/router';
 import MainIcon from '/public/icons/main.svg';
-import { MENU_ITEMS } from '@/constants/site';
+import { MENU_ITEMS } from '@/config/site';
 
 const Header = () => {
   const router = useRouter();

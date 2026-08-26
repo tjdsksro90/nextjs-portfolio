@@ -7,6 +7,9 @@ import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/constants/api';
 // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  console.log('TOKEN Check:', process.env.NOTION_TOKEN ? 'EXISTS' : 'UNDEFINED');
+  console.log('DATABASE_ID Check:', DATABASE_ID);
+
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }

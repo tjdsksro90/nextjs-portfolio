@@ -20,3 +20,12 @@ export const getTotalCount = async () => {
 
   return response.data.results.length;
 };
+
+// 3. 단일 상세 데이터 불러오기
+export const getListItem = async (title: string) => {
+  const response = await apiClient.get(API_ENDPOINTS.PROJECTS.ITEM, {
+    params: { title },
+  });
+
+  return response.data; // { pagesData: {...}, blocksData: [...] }
+};

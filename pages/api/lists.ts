@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { TOKEN, DATABASE_ID } from '@/config/index';
+import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/constants/api';
 
 // 테스트용 강제 지연 함수
 // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -17,13 +18,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     const options = {
       method: 'POST',
-      url: `https://api.notion.com/v1/databases/${DATABASE_ID}/query`,
-      headers: {
-        accept: 'application/json',
-        'Notion-Version': '2022-06-28',
-        'content-type': 'application/json',
-        Authorization: `Bearer ${TOKEN}`,
-      },
+      url: NOTION_ENDPOINTS.databaseQuery(DATABASE_ID as string),
+      headers: NOTION_HEADERS,
       data: isTotalCount
         ? {
             page_size: 100,
@@ -33,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             sorts: [
               {
                 property: 'WorkPeriod',
-                direction: 'ascending',
+                direction: 'descending',
               },
             ],
             ...(cursor && { start_cursor: cursor }),

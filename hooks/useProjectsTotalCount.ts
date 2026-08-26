@@ -1,4 +1,4 @@
-import { getTotalCount } from '@/api/lists';
+import { getTotalCount } from '@/services/lists';
 import { useQuery } from '@tanstack/react-query';
 
 export const useProjectTotalCount = () => {

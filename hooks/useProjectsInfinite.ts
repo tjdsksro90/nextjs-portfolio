@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getLists } from '@/api/lists';
+import { getLists } from '@/services/lists';
 
 export const useProjectsInfinite = () => {
   const observerRef = useRef<HTMLDivElement | null>(null);

@@ -27,6 +27,7 @@ const nextConfig = {
     appDir: true,
   },
   images: {
+    unoptimized: true, // (sharp C++ 파싱 충돌 방지)
     domains: [
       'www.notion.so',
       'images.unsplash.com',

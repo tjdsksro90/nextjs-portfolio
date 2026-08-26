@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { apiClient } from './client';
-import { API_ENDPOINTS } from '@/constants/api';
+import { API_ENDPOINTS } from '@/config/api';
 
 // 1. 리스트 불러오기
 export const getLists = async (cursor?: string) => {

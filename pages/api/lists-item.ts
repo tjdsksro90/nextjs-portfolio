@@ -1,5 +1,5 @@
 import { DATABASE_ID } from '@/config';
-import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/constants/api';
+import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/config/api';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const removeUndefined = (obj: any): any => {

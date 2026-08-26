@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { DATABASE_ID } from '@/config';
-import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/constants/api';
+import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/config/api';
 
 // 테스트용 강제 지연 함수
 // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));

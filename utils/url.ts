@@ -1,6 +1,4 @@
-// url.ts
-
-import { LOCAL_BASE_URL } from '@/constants/site';
+import { LOCAL_BASE_URL } from '@/config';
 
 export const getBaseUrl = (req?: { headers: { [key: string]: string | undefined } }) => {
   if (req) {

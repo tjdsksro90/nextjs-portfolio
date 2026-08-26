@@ -1,4 +1,4 @@
-import { LOCAL_BASE_URL } from '@/constants/site';
+import { LOCAL_BASE_URL } from '@/config/site';
 import fetch from 'node-fetch';
 import { getPlaiceholder } from 'plaiceholder';
 

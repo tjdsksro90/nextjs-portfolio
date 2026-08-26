@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@plaiceholder/next": "^3.0.0",
+    "@tanstack/react-query": "^5.102.4",
     "autoprefixer": "^10.4.19",
     "axios": "^1.6.2",
     "classnames": "^2.5.1",

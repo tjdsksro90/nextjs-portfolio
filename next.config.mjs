@@ -25,6 +25,7 @@ const nextConfig = {
   },
   experimental: {
     appDir: true,
+    scrollRestoration: true, // 뒤로가기시 스크롤 위치 그대로
   },
   images: {
     unoptimized: true, // (sharp C++ 파싱 충돌 방지)

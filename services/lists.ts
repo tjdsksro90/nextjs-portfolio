@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { apiClient } from './client';
 import { API_ENDPOINTS } from '@/config/api';
 

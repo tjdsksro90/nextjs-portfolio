@@ -5,6 +5,7 @@ export const API_ENDPOINTS = {
     LIST: '/api/lists',
     ITEM: '/api/list-item',
   },
+  IMAGES: '/api/image',
 } as const;
 
 export const NOTION_BASE_URL = 'https://api.notion.com/v1';

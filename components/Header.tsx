@@ -21,8 +21,9 @@ const Header = () => {
           <span className="ml-3 text-xl">포트폴리오</span>
         </Link>
         <nav className="flex flex-wrap items-center justify-center text-base md:ml-auto">
-          {Object.entries(MENU_ITEMS).map(([key, [label, path, isExternal]]) => {
-            const isActive = path === '/' ? router.pathname === path : router.pathname.startsWith(path);
+          {Object.entries(MENU_ITEMS).map(([key, { label, path, isExternal }]) => {
+            const isActive =
+              path === MENU_ITEMS.home.path ? router.pathname === path : router.pathname.startsWith(path);
             const linkClass = `mr-5 ${isActive ? "relative after:content-[''] text-indigo-500 font-semibold after:bg-indigo-500 after:w-full after:absolute after:left-0 after:bottom-[-10px] after:h-[3px] after:rounded-md" : ''}`;
 
             return isExternal ? (

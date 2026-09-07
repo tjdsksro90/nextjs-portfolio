@@ -3,11 +3,22 @@ import MainTitle from '@/components/common/main-title';
 import ProjectDetailComponent from '@/components/projects/detail/project-detail';
 import { ProjectDetailProps } from '@/types/project-detail';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
-import Link from 'next/link';
 import ArrowIcon from '/public/icons/arrow.svg';
 import { fetchListItemData } from '../api/lists-item';
+import { useRouter } from 'next/navigation';
+import { MENU_ITEMS } from '@/config/site';
 
 const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
+  const router = useRouter();
+
+  const handleBack = () => {
+    if (document.referrer.includes(MENU_ITEMS.projects.path)) {
+      router.back();
+    } else {
+      router.push(MENU_ITEMS.projects.path);
+    }
+  };
+
   return (
     <div className="container min-h-screen px-5 mx-auto mb-10 md:px-14">
       <Seo title="Project Detail" />
@@ -16,7 +27,7 @@ const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
         sub={
           <span>
             프로젝트 상세내용 화면입니다.
-            <Link className="flex items-center gap-1 mt-1 font-semibold" href={`/projects`}>
+            <button type="button" className="flex items-center gap-1 mt-1 font-semibold" onClick={handleBack}>
               <span className="w-5 rotate-180">
                 <ArrowIcon
                   width="auto"
@@ -28,7 +39,7 @@ const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
                 />
               </span>
               <span>뒤로가기</span>
-            </Link>
+            </button>
           </span>
         }
       />

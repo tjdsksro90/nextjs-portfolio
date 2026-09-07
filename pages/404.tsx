@@ -1,4 +1,5 @@
 import Seo from '@/components/Seo';
+import { MENU_ITEMS } from '@/config/site';
 import Link from 'next/link';
 
 const NotFound = () => {
@@ -14,7 +15,7 @@ const NotFound = () => {
             존재하지 않는 주소를 입력하셨거나, <br />
             요청하신 페이지의 주소가 변경, 삭제되어 찾을 수 없습니다
           </p>
-          <Link className="btn-project" href={'/'}>
+          <Link className="btn-project" href={MENU_ITEMS.home.path}>
             홈으로
           </Link>
         </div>

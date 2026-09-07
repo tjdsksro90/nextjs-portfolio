@@ -15,12 +15,36 @@ export const SOCIAL_LINKS = {
   openKakao: 'https://open.kakao.com/o/sKGqxszg',
 } as const;
 
-export type MenuItemType = [string, string, boolean];
+interface MenuItemType {
+  label: string;
+  path: string;
+  isExternal: boolean;
+}
 
 export const MENU_ITEMS: Record<string, MenuItemType> = {
-  home: ['홈', '/', false],
-  about: ['소개', '/about', false],
-  projects: ['프로젝트', '/projects', false],
-  blog: ['블로그', '/blog', false],
-  contact: ['연락하기', SOCIAL_LINKS.openKakao, true],
+  home: {
+    label: '홈',
+    path: '/',
+    isExternal: false,
+  },
+  about: {
+    label: '소개',
+    path: '/about',
+    isExternal: false,
+  },
+  projects: {
+    label: '프로젝트',
+    path: '/projects',
+    isExternal: false,
+  },
+  blog: {
+    label: '블로그',
+    path: '/blog',
+    isExternal: false,
+  },
+  contact: {
+    label: '연락하기',
+    path: SOCIAL_LINKS.openKakao,
+    isExternal: true,
+  },
 };

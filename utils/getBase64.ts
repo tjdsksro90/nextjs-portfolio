@@ -1,4 +1,5 @@
 import { LOCAL_BASE_URL } from '@/config';
+import { MENU_ITEMS } from '@/config/site';
 import fetch from 'node-fetch';
 import { getPlaiceholder } from 'plaiceholder';
 
@@ -38,7 +39,7 @@ const getBase64 = async (src: string, requestHeaders?: any) => {
         baseUrl = LOCAL_BASE_URL;
       }
 
-      imageUrl = src.startsWith('/') ? `${baseUrl}${src}` : `${baseUrl}/${src}`;
+      imageUrl = src.startsWith(MENU_ITEMS.home.path) ? `${baseUrl}${src}` : `${baseUrl}/${src}`;
     }
 
     console.log('Fetching image from:', imageUrl);

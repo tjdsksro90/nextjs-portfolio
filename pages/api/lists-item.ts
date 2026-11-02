@@ -57,9 +57,24 @@ export async function fetchListItemData(title: string) {
 
   const blocksData = await resBlocks.json();
   const pagesData = await resPages.json();
+  const blocks = blocksData.results ?? [];
+
+  // 표(table) 블록은 행(table_row)이 하위 블록이라 따로 불러와 children에 붙인다
+  await Promise.all(
+    blocks
+      .filter((block: any) => block.type === 'table' && block.has_children)
+      .map(async (block: any) => {
+        const resRows = await fetch(NOTION_ENDPOINTS.blockChildren(block.id), {
+          method: 'GET',
+          headers: NOTION_HEADERS,
+        });
+        const rows = await resRows.json();
+        block.children = rows.results ?? [];
+      }),
+  );
 
   return {
-    blocksData: blocksData.results ? removeUndefined(blocksData.results) : [],
+    blocksData: removeUndefined(blocks),
     pagesData: removeUndefined(pagesData),
   };
 }

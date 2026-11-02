@@ -23,7 +23,8 @@ const ProjectLinks = ({ site, site2, site3, github, youtube, className = '' }: P
   return (
     <div className={`flex flex-wrap gap-2 ${className}`}>
       {links.map(({ href, text }) => (
-        <CommonLink key={text} href={href} text={`${text} ↗`} className="chip-link" />
+        // URL에 [사이트명]이 있으면 "사이트 2" 대신 그 이름으로 보여준다
+        <CommonLink key={text} href={href} text={text} className="chip-link" preferSiteName showIcon />
       ))}
     </div>
   );

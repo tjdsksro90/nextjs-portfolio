@@ -22,7 +22,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       headers: NOTION_HEADERS,
       data: isTotalCount
         ? {
-            page_size: 100,
+            page_size: 100, // 전체 목록 (홈 대표 작업·다음 프로젝트·전체 개수에 사용)
+            sorts: [
+              {
+                property: 'WorkPeriod',
+                direction: 'descending',
+              },
+            ],
           }
         : {
             page_size: 5, // 리스트 불러오기 5개씩

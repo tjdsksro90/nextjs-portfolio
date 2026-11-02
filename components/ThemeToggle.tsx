@@ -5,7 +5,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="relative inline-flex items-center justify-center w-9 h-9 transition-colors border rounded-full shrink-0 border-zinc-200 text-zinc-500 hover:text-amber-500 hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-yellow-300 dark:hover:border-zinc-700"
+      className="relative inline-flex items-center justify-center w-11 h-11 sm:w-9 sm:h-9 transition-colors border rounded-full shrink-0 border-zinc-200 text-zinc-500 hover:text-amber-500 hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-yellow-300 dark:hover:border-zinc-700"
       type="button"
       aria-label="테마 변경"
       onClick={() => {

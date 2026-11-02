@@ -21,7 +21,7 @@ export const useProjectsInfinite = () => {
           fetchNextPage();
         }
       },
-      { threshold: 1.0 },
+      { threshold: 0, rootMargin: '0px 0px 300px 0px' }, // 빠르게 스크롤해도 다음 페이지를 불러오게
     );
 
     observer.observe(observerRef.current);

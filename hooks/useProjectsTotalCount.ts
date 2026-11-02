@@ -1,12 +1,8 @@
-import { getTotalCount } from '@/services/lists';
-import { useQuery } from '@tanstack/react-query';
+import { useAllProjects } from './useAllProjects';
 
 export const useProjectTotalCount = () => {
-  const { data: totalCount = 0, isLoading } = useQuery({
-    queryKey: ['projects', 'totalCount'],
-    queryFn: getTotalCount,
-    staleTime: 1000 * 60 * 5, // 5분간 캐싱
-  });
+  // 전체 목록 쿼리를 공유하므로 추가 요청이 생기지 않는다
+  const { projects, isLoading } = useAllProjects();
 
-  return { totalCount, isLoading };
+  return { totalCount: projects.length, isLoading };
 };

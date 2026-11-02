@@ -64,7 +64,7 @@ module.exports = {
         'custom-text-pink': 'rgba(193, 76, 138, 1)',
         'custom-text-brown': 'rgba(159, 107, 83, 1)',
         'custom-text-gray': 'rgba(120, 119, 116, 1)',
-        'custom-text-defatul': 'rgb(55, 53, 47)',
+        'custom-text-default': 'rgb(55, 53, 47)',
         code: 'rgba(135,131,120,.15)',
       },
     },

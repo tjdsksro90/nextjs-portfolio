@@ -5,6 +5,22 @@
 @layer base {
   html {
     @apply scroll-smooth antialiased;
+    /* 브라우저 기본 요소(스크롤바, 입력 커서, 체크박스)도 팔레트 색으로 */
+    accent-color: theme('colors.indigo.600');
+    caret-color: theme('colors.indigo.600');
+    scrollbar-color: theme('colors.zinc.300') transparent;
+  }
+
+  html.dark {
+    accent-color: theme('colors.indigo.400');
+    caret-color: theme('colors.indigo.400');
+    scrollbar-color: theme('colors.zinc.700') transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      @apply scroll-auto;
+    }
   }
 
   body {
@@ -51,12 +67,8 @@
     @apply text-indigo-600 dark:text-indigo-400;
   }
 
-  .eyebrow {
-    @apply font-mono text-xs font-medium tracking-widest uppercase text-indigo-600 dark:text-indigo-400;
-  }
-
   .btn-project {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white transition-all bg-zinc-900 rounded-full shadow-sm hover:bg-indigo-600 hover:text-white hover:-translate-y-0.5 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-indigo-400 dark:hover:text-zinc-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950;
+    @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold text-white transition-all bg-zinc-900 rounded-full shadow-sm hover:bg-indigo-600 hover:text-white motion-safe:hover:-translate-y-0.5 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-indigo-400 dark:hover:text-zinc-950 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-zinc-950;
   }
 
   .btn-ghost {
@@ -68,11 +80,7 @@
   }
 
   .project-card {
-    @apply relative flex flex-col w-full overflow-hidden transition-all duration-300 bg-white border rounded-2xl border-zinc-200 hover:-translate-y-1 hover:border-zinc-300 hover:shadow-xl hover:shadow-zinc-900/5 dark:bg-zinc-900/40 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:shadow-black/40;
-  }
-
-  .blog-card {
-    @apply px-6 py-8 mb-8 transition-all duration-300 bg-white border cursor-pointer rounded-2xl border-zinc-200 hover:border-zinc-300 hover:shadow-xl hover:shadow-zinc-900/5 sm:px-10 dark:bg-zinc-900/40 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:shadow-black/40;
+    @apply relative flex flex-col w-full overflow-hidden transition-all duration-300 bg-white border rounded-2xl border-zinc-200 motion-safe:hover:-translate-y-1 hover:border-zinc-300 hover:shadow-xl hover:shadow-zinc-900/5 dark:bg-zinc-900/40 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:shadow-black/40;
   }
 
   .surface {
@@ -83,6 +91,7 @@
     @apply text-white dark:text-white;
   }
 
+  /* 홈 히어로 바탕의 은은한 격자 (설계도 위에 그린 화면 같은 인상) */
   .bg-grid {
     background-image:
       linear-gradient(to right, rgb(24 24 27 / 0.06) 1px, transparent 1px),
@@ -104,7 +113,7 @@
   }
 
   blockquote[data-ke-style='style2'] {
-    @apply p-4 mb-4 italic border-l-4 rounded-r-lg bg-zinc-50 border-indigo-400 dark:bg-zinc-900;
+    @apply p-4 mb-4 italic rounded-lg bg-zinc-50 text-zinc-700 dark:bg-zinc-900 dark:text-zinc-300;
   }
 
   h3[data-ke-size='size23'],

@@ -1,14 +1,15 @@
 import { useTheme } from 'next-themes';
 
 const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
 
   return (
     <button
-      className="relative inline-flex items-center w-10 h-10 px-3 py-3 mt-4 text-base bg-gray-100 border-0 rounded focus:outline-none hover:bg-gray-50 md:mt-0 hover:text-orange-500 dark:bg-slate-600 dark:text-slate-400 dark:hover:text-yellow-300 dark:hover:bg-slate-700"
+      className="relative inline-flex items-center justify-center w-9 h-9 transition-colors border rounded-full shrink-0 border-zinc-200 text-zinc-500 hover:text-amber-500 hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 dark:border-zinc-800 dark:text-zinc-400 dark:hover:text-yellow-300 dark:hover:border-zinc-700"
       type="button"
+      aria-label="테마 변경"
       onClick={() => {
-        setTheme(theme === 'dark' ? 'light' : 'dark');
+        setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
       }}
     >
       <svg
@@ -16,7 +17,7 @@ const ThemeToggle = () => {
         viewBox="0 0 24 24"
         fill="currentColor"
         data-slot="icon"
-        className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] visible w-6 h-6 dark:invisible"
+        className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] visible w-[18px] h-[18px] dark:invisible"
       >
         <path d="M12 2.25a.75.75 0 0 1 .75.75v2.25a.75.75 0 0 1-1.5 0V3a.75.75 0 0 1 .75-.75ZM7.5 12a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM18.894 6.166a.75.75 0 0 0-1.06-1.06l-1.591 1.59a.75.75 0 1 0 1.06 1.061l1.591-1.59ZM21.75 12a.75.75 0 0 1-.75.75h-2.25a.75.75 0 0 1 0-1.5H21a.75.75 0 0 1 .75.75ZM17.834 18.894a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 1 0-1.061 1.06l1.59 1.591ZM12 18a.75.75 0 0 1 .75.75V21a.75.75 0 0 1-1.5 0v-2.25A.75.75 0 0 1 12 18ZM7.758 17.303a.75.75 0 0 0-1.061-1.06l-1.591 1.59a.75.75 0 0 0 1.06 1.061l1.591-1.59ZM6 12a.75.75 0 0 1-.75.75H3a.75.75 0 0 1 0-1.5h2.25A.75.75 0 0 1 6 12ZM6.697 7.757a.75.75 0 0 0 1.06-1.06l-1.59-1.591a.75.75 0 0 0-1.061 1.06l1.59 1.591Z" />
       </svg>
@@ -25,7 +26,7 @@ const ThemeToggle = () => {
         viewBox="0 0 24 24"
         fill="currentColor"
         data-slot="icon"
-        className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] invisible w-6 h-6 dark:visible"
+        className="absolute left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] invisible w-[18px] h-[18px] dark:visible"
       >
         <path
           fillRule="evenodd"

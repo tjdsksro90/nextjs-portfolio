@@ -13,11 +13,16 @@ interface BlogProps {
 
 const Blog = ({ posts }: BlogProps) => {
   return (
-    <div className="container px-5 mx-auto md:px-14">
+    <div className="max-w-4xl px-5 mx-auto md:px-8">
       <Seo title="Blog" />
       <MainTitle
+        eyebrow="Writing"
         main="Blog"
-        sub={<CommonLink href={'https://gmrdlsrkswnl.tistory.com'} text="블로그 링크 바로가기" />}
+        sub={
+          <span className="flex flex-wrap items-center gap-3">
+            <CommonLink href={'https://gmrdlsrkswnl.tistory.com'} text="블로그 바로가기 ↗" className="chip-link" />
+          </span>
+        }
       />
       <BlogItemList posts={posts} />
     </div>

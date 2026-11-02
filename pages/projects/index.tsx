@@ -7,19 +7,21 @@ const Projects = () => {
   const { totalCount, isLoading } = useProjectTotalCount();
 
   return (
-    <div className="container flex flex-col items-center justify-center min-h-screen mx-auto mb-10 px-5 md:px-14">
+    <div className="flex flex-col max-w-6xl min-h-screen px-5 pb-24 mx-auto md:px-8">
       <Seo title="Projects" />
       <MainTitle
+        eyebrow="Work"
         main="Projects"
         sub={
-          <span>
-            총 프로젝트 : <span className="text-blue-500 font-semibold">{isLoading ? '-' : totalCount}</span>
+          <span className="flex flex-wrap items-center gap-3">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 font-mono text-xs border rounded-full border-zinc-200 dark:border-zinc-800">
+              TOTAL
+              <span className="font-semibold text-main">{isLoading ? '-' : totalCount}</span>
+            </span>
           </span>
         }
       />
-      <div className="w-full mt-8">
-        <ProjectItemList />
-      </div>
+      <ProjectItemList />
     </div>
   );
 };

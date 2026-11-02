@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import { Loading } from './loading';
 import { API_ENDPOINTS } from '@/config/api';
 
@@ -8,9 +9,11 @@ interface Props {
   src: string;
   className?: string;
   loadingSize?: number;
+  // true면 wrap 영역을 꽉 채우도록 렌더링 (wrap에 크기/비율 지정 필요)
+  fill?: boolean;
 }
 
-const CommonImage = ({ src, className, wrap, loadingSize = 50 }: Props) => {
+const CommonImage = ({ src, className, wrap, loadingSize = 50, fill = false }: Props) => {
   const [imageData, setImageData] = useState({
     src: '',
     blurDataURL: '',
@@ -125,12 +128,48 @@ const CommonImage = ({ src, className, wrap, loadingSize = 50 }: Props) => {
     fetchImageData();
   }, [src, isNotionImage]);
 
-  if (!imageData.isLoaded) return <Loading size={loadingSize} wrap="my-5" />;
+  if (!imageData.isLoaded) {
+    return fill ? (
+      <div className={classNames(wrap, 'animate-pulse bg-zinc-100 dark:bg-zinc-800/60')} />
+    ) : (
+      <Loading size={loadingSize} wrap="my-5 text-zinc-400" />
+    );
+  }
 
   if (!imageData.isLoaded || imageData.hasError) {
     return (
       <div className={wrap}>
-        <div className="w-full h-52 flex justify-center items-center bg-indigo-500 text-white">이미지가 없습니다.</div>
+        <div
+          className={classNames(
+            'w-full flex justify-center items-center bg-zinc-100 text-sm text-zinc-400 dark:bg-zinc-800/60 dark:text-zinc-500',
+            fill ? 'h-full' : 'h-52',
+          )}
+        >
+          이미지가 없습니다.
+        </div>
+      </div>
+    );
+  }
+
+  if (fill) {
+    return (
+      <div className={classNames('relative', wrap)}>
+        <Image
+          className={classNames('object-cover', className)}
+          src={imageData.src}
+          alt="cover image"
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          placeholder={imageData.blurDataURL ? 'blur' : 'empty'}
+          blurDataURL={imageData.blurDataURL || undefined}
+          unoptimized={isNotionImage}
+          onError={() => {
+            setImageData(prev => ({
+              ...prev,
+              hasError: true,
+            }));
+          }}
+        />
       </div>
     );
   }

@@ -1,5 +1,4 @@
 import Seo from '@/components/Seo';
-import MainTitle from '@/components/common/main-title';
 import ProjectDetailComponent from '@/components/projects/detail/project-detail';
 import { ProjectDetailProps } from '@/types/project-detail';
 import { GetServerSideProps, GetServerSidePropsContext } from 'next';
@@ -20,29 +19,27 @@ const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
   };
 
   return (
-    <div className="container min-h-screen px-5 mx-auto mb-10 md:px-14">
-      <Seo title="Project Detail" />
-      <MainTitle
-        main="Project Detail"
-        sub={
-          <span>
-            프로젝트 상세내용 화면입니다.
-            <button type="button" className="flex items-center gap-1 mt-1 font-semibold" onClick={handleBack}>
-              <span className="w-5 rotate-180">
-                <ArrowIcon
-                  width="auto"
-                  height="auto"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </span>
-              <span>뒤로가기</span>
-            </button>
+    <div className="max-w-6xl min-h-screen px-5 pb-24 mx-auto md:px-8">
+      <Seo title={pagesData?.properties?.Name?.title[0]?.plain_text || 'Project Detail'} />
+      <div className="pt-10 pb-8 md:pt-14">
+        <button
+          type="button"
+          className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors text-zinc-500 hover:text-zinc-900 group dark:text-zinc-400 dark:hover:text-zinc-50"
+          onClick={handleBack}
+        >
+          <span className="w-4 transition-transform rotate-180 group-hover:-translate-x-1">
+            <ArrowIcon
+              width="auto"
+              height="auto"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+            />
           </span>
-        }
-      />
+          <span>프로젝트 목록</span>
+        </button>
+      </div>
       <ProjectDetailComponent blocksData={blocksData} pagesData={pagesData} />
     </div>
   );

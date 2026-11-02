@@ -40,10 +40,10 @@ const CommonLink = ({
 
   if (isLinkDisabled) {
     return (
-      <div className={`${className} text-gray-500`}>
+      <div className={`${className} opacity-60 cursor-not-allowed`}>
         <span>{text}</span>
-        {siteName && <span className="ml-2 text-sm">[{siteName}]</span>}
-        <span className="ml-2 text-sm">{disabledText}</span>
+        {siteName && <span className="ml-1">[{siteName}]</span>}
+        <span className="ml-1">{disabledText}</span>
       </div>
     );
   }
@@ -52,7 +52,7 @@ const CommonLink = ({
     <Link href={cleanUrl} legacyBehavior>
       <a className={className} target="_blank" rel="noopener noreferrer">
         {text}
-        {siteName && <span className="ml-2 text-sm text-gray-600">[{siteName}]</span>}
+        {siteName && <span className="ml-1 opacity-60">[{siteName}]</span>}
       </a>
     </Link>
   );

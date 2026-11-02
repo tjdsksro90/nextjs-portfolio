@@ -12,19 +12,19 @@ interface Props {
 
 const CommonTags = ({ tags, wrap }: Props) => {
   return (
-    <div className={wrap}>
+    <ul className={wrap}>
       {tags.map(tag => (
-        <h6
+        <li
           className={classNames(
-            'px-2 py-1 rounded-md w-30',
+            'px-2 py-0.5 rounded-md text-xs font-medium text-zinc-700 dark:text-zinc-200',
             getBgColorClassName(tag.color), // 동적 클래스 설정
           )}
           key={tag.id}
         >
           {tag.name}
-        </h6>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 };
 

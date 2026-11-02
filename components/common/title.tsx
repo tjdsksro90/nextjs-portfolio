@@ -1,9 +1,12 @@
+import classNames from 'classnames';
+
 interface Props {
   title: string;
+  className?: string;
 }
 
-const CommonTitle = ({ title }: Props) => {
-  return <h1 className="text-2xl font-bold">{title}</h1>;
+const CommonTitle = ({ title, className }: Props) => {
+  return <h1 className={classNames('text-xl font-semibold', className)}>{title}</h1>;
 };
 
 export default CommonTitle;

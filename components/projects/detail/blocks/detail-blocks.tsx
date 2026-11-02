@@ -18,7 +18,7 @@ export const BlockDetail = ({ richText }: Props) => (
             italic: text.annotations.italic,
             'line-through': text.annotations.strikethrough,
             underline: text.annotations.underline,
-            'px-1 bg-code': text.annotations.code,
+            'px-1.5 py-0.5 rounded font-mono text-[0.9em] bg-code': text.annotations.code,
           },
           text.annotations.code ? getColorClassName(text.annotations.color) : '',
         ),

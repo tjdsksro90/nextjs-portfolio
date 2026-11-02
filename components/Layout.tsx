@@ -7,9 +7,9 @@ type AppLayoutProps = {
 
 const Layout = ({ children }: AppLayoutProps) => {
   return (
-    <div className="bg-primary">
+    <div className="flex flex-col min-h-screen bg-primary">
       <Header />
-      <div>{children}</div>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   );

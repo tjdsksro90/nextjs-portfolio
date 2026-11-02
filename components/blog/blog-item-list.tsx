@@ -21,7 +21,7 @@ const BlogItemList = ({ posts }: { posts: Post[] }) => {
         {posts.map((post, index) => (
           <li
             key={index}
-            className="blog-card"
+            className="blog-card group"
             onClick={() => {
               window.open(post.link);
             }}
@@ -31,16 +31,23 @@ const BlogItemList = ({ posts }: { posts: Post[] }) => {
               className={`${
                 expandedPosts[index]
                   ? ''
-                  : "h-[30rem] overflow-hidden relative after:content-[''] after:w-full after:absolute after:left-0 after:bottom-0 after:h-[10rem] after:bg-gradient-to-t after:from-white dark:after:from-black after:to-transparent"
+                  : "h-[26rem] overflow-hidden relative after:content-[''] after:w-full after:absolute after:left-0 after:bottom-0 after:h-[10rem] after:bg-gradient-to-t after:from-white dark:after:from-zinc-950 after:to-transparent"
               }`}
             >
-              <h1 className="text-2xl font-bold text-main">{post.title}</h1>
-              <p className="h-[1px] bg-primary-reverse my-10"></p>
-              <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              {post.isoDate && (
+                <time className="block mb-3 font-mono text-xs text-zinc-400" dateTime={post.isoDate}>
+                  {post.isoDate.slice(0, 10)}
+                </time>
+              )}
+              <h1 className="text-2xl font-bold leading-snug transition-colors md:text-3xl group-hover:text-main">
+                {post.title}
+              </h1>
+              <div className="h-px my-8 bg-zinc-200 dark:bg-zinc-800" />
+              <div className="overflow-hidden" dangerouslySetInnerHTML={{ __html: post.content }} />
             </div>
-            <div className="text-center">
+            <div className="mt-6 text-center">
               <button
-                className={`${expandedPosts[index] ? 'justify-center w-full btn-project mt-10' : 'btn-project'}`}
+                className={`${expandedPosts[index] ? 'justify-center w-full btn-ghost mt-4' : 'btn-ghost'}`}
                 type="button"
                 onClick={e => {
                   e.stopPropagation(); // Prevent the li onClick from triggering
@@ -53,15 +60,11 @@ const BlogItemList = ({ posts }: { posts: Post[] }) => {
           </li>
         ))}
       </ul>
-      <a
-        className="flex justify-center mb-20 ml-3 text-4xl text-center cursor-pointer"
-        href="https://gmrdlsrkswnl.tistory.com/"
-        target="_blank"
-      >
-        .<br />.<br />
-        <br />
-        블로그에서 더 보기
-      </a>
+      <div className="flex justify-center pt-4 pb-24">
+        <a className="btn-project" href="https://gmrdlsrkswnl.tistory.com/" target="_blank" rel="noopener noreferrer">
+          블로그에서 더 보기 ↗
+        </a>
+      </div>
     </section>
   );
 };

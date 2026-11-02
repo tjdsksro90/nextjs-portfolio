@@ -1,10 +1,10 @@
 /* Swiper Centered Auto 스타일 */
 .files-slide-swiper {
-  border: 1px solid white;
-  border-radius: 10px;
+  border: 1px solid rgb(228 228 231);
+  border-radius: 16px;
+  padding: 24px 0 16px;
   display: flex;
   flex-direction: column;
-  padding-bottom: 0;
 }
 
 .files-slide-swiper .swiper-wrapper {
@@ -47,5 +47,15 @@
 
 .files-slide-swiper .swiper-pagination-bullet-active {
   background: #6366f1;
+  width: 20px;
+  border-radius: 4px;
   opacity: 1;
+}
+
+.dark .files-slide-swiper {
+  border-color: rgb(39 39 42);
+}
+
+.files-slide-swiper .swiper-pagination-bullet {
+  transition: width 0.2s;
 }

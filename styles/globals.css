@@ -90,6 +90,20 @@
   .pick-white {
     @apply text-white dark:text-white;
   }
+
+  /* 홈 히어로 바탕의 은은한 격자 (설계도 위에 그린 화면 같은 인상) */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(24 24 27 / 0.06) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(24 24 27 / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .dark .bg-grid {
+    background-image:
+      linear-gradient(to right, rgb(255 255 255 / 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgb(255 255 255 / 0.05) 1px, transparent 1px);
+  }
 }
 
 /* Custom Blog styles */

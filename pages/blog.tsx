@@ -2,18 +2,36 @@ import Seo from '@/components/Seo';
 import BlogItemList from '@/components/blog/blog-item-list';
 import CommonLink from '@/components/common/link';
 import MainTitle from '@/components/common/main-title';
-import { BLOG_RSS_URL } from '@/config';
-import axios from 'axios';
-import { GetServerSideProps } from 'next';
-import Parser from 'rss-parser';
+import { Loading } from '@/components/common/loading';
+import { useBlogPosts } from '@/hooks/useBlogPosts';
+import { useDeferredLoading } from '@/hooks/useDeferredLoading';
 
-interface BlogProps {
-  posts: Post[];
-}
+const Blog = () => {
+  const { posts, isLoading, isError } = useBlogPosts();
 
-const Blog = ({ posts }: BlogProps) => {
+  // 200ms 이상 지속될 때만 로딩 노출 (깜빡임 방지)
+  const showLoading = useDeferredLoading(isLoading, 200);
+
+  const renderContent = () => {
+    if (isLoading) {
+      return showLoading ? <Loading size={40} wrap="py-20 text-zinc-400" /> : null;
+    }
+
+    if (isError || posts.length === 0) {
+      return (
+        <p className="py-20 text-center">
+          {isError ? '블로그 글을 불러오지 못했습니다.' : '등록된 글이 없습니다.'}
+          <br />
+          아래 링크에서 블로그를 직접 확인해 주세요.
+        </p>
+      );
+    }
+
+    return null;
+  };
+
   return (
-    <div className="max-w-4xl px-5 mx-auto md:px-8">
+    <div className="max-w-4xl min-h-screen px-5 mx-auto md:px-8">
       <Seo title="Blog" />
       <MainTitle
         eyebrow="Writing"
@@ -24,37 +42,10 @@ const Blog = ({ posts }: BlogProps) => {
           </span>
         }
       />
-      <BlogItemList posts={posts} />
+      {renderContent()}
+      {!isLoading && <BlogItemList posts={posts} />}
     </div>
   );
-};
-
-export const getServerSideProps: GetServerSideProps<BlogProps> = async () => {
-  const parser = new Parser();
-
-  try {
-    const response = await axios.get(BLOG_RSS_URL as string);
-    const feed = await parser.parseString(response.data);
-    const posts: Post[] = feed.items.map((item: { [key: string]: string }) => ({
-      title: item.title,
-      link: item.link,
-      content: item.content || item['content:encodedSnippet'],
-      isoDate: item.isoDate,
-    }));
-
-    return {
-      props: {
-        posts,
-      },
-    };
-  } catch (error) {
-    console.error('Failed to fetch posts:', error);
-    return {
-      props: {
-        posts: [],
-      },
-    };
-  }
 };
 
 export default Blog;

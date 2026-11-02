@@ -4,7 +4,7 @@ import TitleAnimaion from '../common/title-animaion';
 import { SocialLinks } from '../Footer';
 
 const HIGHLIGHTS = [
-  { label: 'Background', value: '시각디자인 전공 · 디자인 회사 4년' },
+  { label: 'Experience', value: '프론트엔드 개발 7년차' },
   { label: 'Role', value: 'Frontend Engineer' },
   { label: 'Strength', value: 'UI/UX를 고려한 개발' },
 ];

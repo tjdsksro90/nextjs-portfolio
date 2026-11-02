@@ -13,6 +13,10 @@ interface Props {
   size?: string;
 }
 
+// 라이트박스 버튼: 글자 기호(✕ ‹ ›) 대신 이름이 있는 버튼, 누르기 쉬운 44px 높이
+const lightboxButton = (position: string) =>
+  `absolute z-10 ${position} min-h-[44px] px-4 text-sm font-medium text-white rounded-full bg-white/10 hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400`;
+
 const CommonFilesSlide = ({ files, size }: Props) => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
@@ -97,31 +101,25 @@ const CommonFilesSlide = ({ files, size }: Props) => {
 
       {selectedIndex !== null && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90"
+          role="dialog"
+          aria-modal="true"
+          aria-label="이미지 크게 보기"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-zinc-950/95"
           onClick={() => setSelectedIndex(null)}
         >
-          <button
-            className="absolute top-4 right-4 text-white text-2xl hover:text-gray-300 z-10"
-            onClick={() => setSelectedIndex(null)}
-          >
-            ✕
+          <button type="button" className={lightboxButton('top-4 right-4')} onClick={() => setSelectedIndex(null)}>
+            닫기
           </button>
 
           {selectedIndex > 0 && (
-            <button
-              className="absolute left-4 text-white text-4xl hover:text-gray-300 z-10"
-              onClick={handlePrevious}
-            >
-              ‹
+            <button type="button" className={lightboxButton('left-4 top-1/2 -translate-y-1/2')} onClick={handlePrevious}>
+              이전
             </button>
           )}
 
           {selectedIndex < files.length - 1 && (
-            <button
-              className="absolute right-4 text-white text-4xl hover:text-gray-300 z-10"
-              onClick={handleNext}
-            >
-              ›
+            <button type="button" className={lightboxButton('right-4 top-1/2 -translate-y-1/2')} onClick={handleNext}>
+              다음
             </button>
           )}
 
@@ -131,12 +129,12 @@ const CommonFilesSlide = ({ files, size }: Props) => {
           >
             <img
               src={files[selectedIndex].file.url}
-              alt={`Image ${selectedIndex + 1}`}
+              alt={`이미지 ${selectedIndex + 1} / ${files.length}`}
               className="max-w-full max-h-[90vh] object-contain"
             />
           </div>
 
-          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm">
+          <div className="absolute text-sm -translate-x-1/2 bottom-4 left-1/2 text-zinc-300 tabular-nums">
             {selectedIndex + 1} / {files.length}
           </div>
         </div>

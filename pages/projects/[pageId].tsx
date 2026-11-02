@@ -27,16 +27,14 @@ const ProjectDetail = ({ blocksData, pagesData }: ProjectDetailProps) => {
           className="inline-flex items-center gap-1.5 text-sm font-medium transition-colors text-zinc-500 hover:text-zinc-900 group dark:text-zinc-400 dark:hover:text-zinc-50"
           onClick={handleBack}
         >
-          <span className="w-4 transition-transform rotate-180 group-hover:-translate-x-1">
-            <ArrowIcon
-              width="auto"
-              height="auto"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-            />
-          </span>
+          <ArrowIcon
+            className="w-4 h-4 transition-transform rotate-180 motion-safe:group-hover:-translate-x-1"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            aria-hidden
+          />
           <span>프로젝트 목록</span>
         </button>
       </div>

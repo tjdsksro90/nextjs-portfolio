@@ -1,76 +1,91 @@
+import Link from 'next/link';
 import { ProjectDetailProps } from '@/types/project-detail';
+import { ProjectResultType } from '@/types/projects';
+import { useAllProjects } from '@/hooks/useAllProjects';
+import { MENU_ITEMS } from '@/config/site';
 import PageRender from './pages/detail-page-render';
 import BlockRender from './blocks/detail-block-render';
 import FileRender from './files/detail-file-render';
-import CommonText from '@/components/common/text';
+import ArrowIcon from '/public/icons/arrow.svg';
+
+type TextKey = 'FilesFirstText' | 'FilesSlideText' | 'FilesSlideText2' | 'FilesSlideText3' | 'FilesText';
+
+// 이미지 묶음 앞에 붙는 설명 문장 (노션 속성)
+const FilesCaption = ({ data, textKey }: { data: ProjectResultType; textKey: TextKey }) => {
+  const text = data.properties?.[textKey]?.rich_text?.[0]?.plain_text;
+  if (!text) return null;
+
+  return <p className="mt-12 mb-5 text-lg font-medium text-zinc-900 dark:text-zinc-50 max-w-[68ch]">{text}</p>;
+};
+
+// 상세 끝: 목록 순서상 다음 프로젝트로 이어지게 (마지막이면 첫 프로젝트)
+const NextProject = ({ currentId }: { currentId: string }) => {
+  const { projects } = useAllProjects();
+  const index = projects.findIndex(project => project.id === currentId);
+  if (index === -1 || projects.length < 2) return null;
+
+  const next = projects[(index + 1) % projects.length];
+  const nextTitle = next.properties.Name.title[0]?.plain_text ?? '';
+  if (!nextTitle) return null;
+
+  return (
+    <nav aria-label="다른 프로젝트" className="flex flex-wrap items-center justify-between gap-4 pt-10 mt-20 border-t border-zinc-200 dark:border-zinc-800">
+      <Link href={MENU_ITEMS.projects.path} className="btn-ghost">
+        전체 프로젝트
+      </Link>
+      <Link href={`/projects/${encodeURIComponent(nextTitle)}`} className="btn-project">
+        <span>다음 프로젝트: {nextTitle}</span>
+        <ArrowIcon
+          className="w-4 h-4"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          aria-hidden
+        />
+      </Link>
+    </nav>
+  );
+};
 
 const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) => {
   if (!pagesData) {
-    return <div>프로젝트 데이터를 불러올 수 없습니다.</div>;
+    return (
+      <div className="py-24 text-center">
+        <p className="mb-6 text-lg text-zinc-700 dark:text-zinc-300">프로젝트 내용을 불러오지 못했습니다.</p>
+        <Link href={MENU_ITEMS.projects.path} className="btn-project">
+          프로젝트 목록으로
+        </Link>
+      </div>
+    );
   }
 
-
   return (
-    <ul>
+    <>
       <PageRender key={`page-${pagesData.id}`} data={pagesData} />
-      <div className="w-full h-px my-16 bg-zinc-200 dark:bg-zinc-800"></div>
-      {pagesData.properties?.FilesFirst?.files?.length > 0 && (
-        <div className="pb-10"></div>
-      )}
-      {pagesData.properties?.FilesFirstText?.rich_text?.[0]?.plain_text && (
-        <li key={`filesFirstText-${pagesData.id}`}>
-          <CommonText 
-            text={pagesData.properties.FilesFirstText.rich_text[0].plain_text}
-            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
-          />
-        </li>
-      )}
+      <div className="w-full h-px my-16 bg-zinc-200 dark:bg-zinc-800" />
+
+      <FilesCaption data={pagesData} textKey="FilesFirstText" />
       <FileRender key={`filesFirst-top-${pagesData.id}`} data={pagesData} fileType="FilesFirst" />
-      {pagesData.properties?.FilesSlideText?.rich_text?.[0]?.plain_text && (
-        <li key={`filesSlideText-${pagesData.id}`}>
-          <CommonText 
-            text={pagesData.properties.FilesSlideText.rich_text[0].plain_text}
-            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
-          />
-        </li>
-      )}
+      <FilesCaption data={pagesData} textKey="FilesSlideText" />
       <FileRender key={`filesSlide-${pagesData.id}`} data={pagesData} fileType="FilesSlide" />
-      {pagesData.properties?.FilesSlideText2?.rich_text?.[0]?.plain_text && (
-        <li key={`filesSlide2Text-${pagesData.id}`}>
-          <CommonText 
-            text={pagesData.properties.FilesSlideText2.rich_text[0].plain_text}
-            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
-          />
-        </li>
-      )}
+      <FilesCaption data={pagesData} textKey="FilesSlideText2" />
       <FileRender key={`filesSlide2-${pagesData.id}`} data={pagesData} fileType="FilesSlide2" />
-      {pagesData.properties?.FilesSlideText3?.rich_text?.[0]?.plain_text && (
-        <li key={`filesSlide3Text-${pagesData.id}`}>
-          <CommonText 
-            text={pagesData.properties.FilesSlideText3.rich_text[0].plain_text}
-            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
-          />
-        </li>
-      )}
+      <FilesCaption data={pagesData} textKey="FilesSlideText3" />
       <FileRender key={`filesSlide3-${pagesData.id}`} data={pagesData} fileType="FilesSlide3" />
-      
-      {blocksData && blocksData.map(block => (
-        <BlockRender key={block.id} block={block} />
-      ))}
-      {pagesData.properties?.Files?.files?.length > 0 && (
-        <div className="mt-10"></div>
+
+      {/* 본문은 읽기 좋은 폭(68자)으로 제한 */}
+      {blocksData && blocksData.length > 0 && (
+        <div className="max-w-[68ch]">
+          <BlockRender blocks={blocksData} />
+        </div>
       )}
-      {pagesData.properties?.FilesText?.rich_text?.[0]?.plain_text && (
-        <li key={`filesText-${pagesData.id}`}>
-          <CommonText 
-            text={pagesData.properties.FilesText.rich_text[0].plain_text}
-            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
-          />
-        </li>
-      )}
+
+      <FilesCaption data={pagesData} textKey="FilesText" />
       <FileRender key={`files-bottom-${pagesData.id}`} data={pagesData} />
-      
-    </ul>
+
+      <NextProject currentId={pagesData.id} />
+    </>
   );
 };
 

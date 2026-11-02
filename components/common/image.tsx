@@ -6,6 +6,7 @@ import { API_ENDPOINTS } from '@/config/api';
 
 interface Props {
   wrap?: string;
+  alt?: string; // 이미지가 무엇인지 (예: "명절세트 배송관리 어드민 화면")
   src: string;
   className?: string;
   loadingSize?: number;
@@ -13,7 +14,7 @@ interface Props {
   fill?: boolean;
 }
 
-const CommonImage = ({ src, className, wrap, loadingSize = 50, fill = false }: Props) => {
+const CommonImage = ({ src, className, wrap, alt = '', loadingSize = 50, fill = false }: Props) => {
   const [imageData, setImageData] = useState({
     src: '',
     blurDataURL: '',
@@ -130,9 +131,9 @@ const CommonImage = ({ src, className, wrap, loadingSize = 50, fill = false }: P
 
   if (!imageData.isLoaded) {
     return fill ? (
-      <div className={classNames(wrap, 'animate-pulse bg-zinc-100 dark:bg-zinc-800/60')} />
+      <div className={classNames(wrap, 'motion-safe:animate-pulse bg-zinc-100 dark:bg-zinc-800/60')} />
     ) : (
-      <Loading size={loadingSize} wrap="my-5 text-zinc-400" />
+      <Loading size={loadingSize} wrap="my-5 text-zinc-500" />
     );
   }
 
@@ -141,7 +142,7 @@ const CommonImage = ({ src, className, wrap, loadingSize = 50, fill = false }: P
       <div className={wrap}>
         <div
           className={classNames(
-            'w-full flex justify-center items-center bg-zinc-100 text-sm text-zinc-400 dark:bg-zinc-800/60 dark:text-zinc-500',
+            'w-full flex justify-center items-center bg-zinc-100 text-sm text-zinc-500 dark:bg-zinc-800/60 dark:text-zinc-400',
             fill ? 'h-full' : 'h-52',
           )}
         >
@@ -157,7 +158,7 @@ const CommonImage = ({ src, className, wrap, loadingSize = 50, fill = false }: P
         <Image
           className={classNames('object-cover', className)}
           src={imageData.src}
-          alt="cover image"
+          alt={alt}
           fill
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           placeholder={imageData.blurDataURL ? 'blur' : 'empty'}
@@ -179,7 +180,7 @@ const CommonImage = ({ src, className, wrap, loadingSize = 50, fill = false }: P
       <Image
         className={className}
         src={imageData.src}
-        alt="cover image1"
+        alt={alt}
         width={imageData.width || 800}
         height={imageData.height || 600}
         layout="responsive"

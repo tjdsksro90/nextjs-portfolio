@@ -4,9 +4,9 @@ import TitleAnimaion from '../common/title-animaion';
 import { SocialLinks } from '../Footer';
 
 const HIGHLIGHTS = [
-  { label: 'Experience', value: '프론트엔드 개발 7년차' },
-  { label: 'Role', value: 'Frontend Engineer' },
-  { label: 'Strength', value: 'UI/UX를 고려한 개발' },
+  { label: '경력', value: '프론트엔드 개발 7년차' },
+  { label: '역할', value: 'Frontend Engineer' },
+  { label: '강점', value: 'UI/UX를 고려한 개발' },
 ];
 
 const AboutComponent = () => {
@@ -20,14 +20,14 @@ const AboutComponent = () => {
             blurDataURL={person}
           />
         </div>
-        <h3 className="mt-5 text-xl font-semibold">윤호준</h3>
-        <p className="mt-1 text-sm">FE Engineer</p>
+        <p className="mt-5 text-xl font-semibold text-primary">윤호준</p>
+        <p className="mt-1 text-sm">Frontend Engineer</p>
         <SocialLinks className="mt-6" />
       </aside>
       <div>
-        <h3 className="mb-6 text-2xl font-semibold leading-snug md:text-3xl">
+        <h2 className="mb-6 text-2xl font-semibold leading-snug md:text-3xl">
           <TitleAnimaion text="경험은 어디든 도움이 된다고 생각하는 개발자" />
-        </h3>
+        </h2>
         <p className="mb-10 text-base leading-loose md:text-lg">
           전공은 <span className="font-medium text-main">시각디자인</span>학과로 디자인 회사에서 4년정도 근무했습니다.
           회사 내에 웹팀이 있었고, 웹팀과의 업무협업을 하면서 개발일에 관심을 가지게 되었습니다. 이후 개발 공부를
@@ -38,7 +38,7 @@ const AboutComponent = () => {
         <dl className="grid gap-4 sm:grid-cols-3">
           {HIGHLIGHTS.map(({ label, value }) => (
             <div key={label} className="p-5 surface">
-              <dt className="mb-2 font-mono text-[11px] tracking-widest uppercase text-zinc-400">{label}</dt>
+              <dt className="mb-2 text-xs font-semibold text-zinc-600 dark:text-zinc-400">{label}</dt>
               <dd className="text-sm font-medium text-primary">{value}</dd>
             </div>
           ))}

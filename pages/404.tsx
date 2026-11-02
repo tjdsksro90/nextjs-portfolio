@@ -7,8 +7,7 @@ const NotFound = () => {
     <div className="flex items-center justify-center min-h-[calc(100vh-4rem)] px-5">
       <Seo title="404" />
       <section className="flex flex-col items-center text-center animate-fade-in">
-        <p className="mb-4 eyebrow">Error 404</p>
-        <h2 className="mb-6 text-7xl font-bold md:text-9xl">404</h2>
+        <h1 className="mb-6 text-7xl font-bold md:text-9xl">404</h1>
         <p className="mb-10 text-base leading-relaxed">
           죄송합니다. 페이지를 찾을 수 없습니다.
           <br />

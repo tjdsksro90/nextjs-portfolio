@@ -14,11 +14,11 @@ const CommonPeriod = ({ start, end, className }: Props) => {
     <p className={classNames('font-mono text-xs text-zinc-500 dark:text-zinc-400', className)}>
       {end ? (
         <>
-          {start} ~ {end} <span className="text-zinc-400 dark:text-zinc-500">· {calculatedPeriod(start, end)}</span>
+          {start} ~ {end} <span>· {calculatedPeriod(start, end)}</span>
         </>
       ) : (
         <>
-          {start} ~ <span className="text-emerald-600 dark:text-emerald-400">진행 중</span>
+          {start} ~ <span className="text-main">진행 중</span>
         </>
       )}
     </p>

@@ -11,15 +11,14 @@ const Hero = () => {
       <div className="flex flex-col items-center text-center md:items-start md:text-left md:w-1/2 animate-fade-in">
         <h1 className="mb-6 text-4xl font-bold leading-[1.15] md:text-5xl xl:text-6xl">
           <TitleAnimaion
-            text="안녕하세요!#윤호준입니다."
-            highlight="윤호준"
+            text="디자인에서#코드로"
+            highlight="코드로"
             highlightClassName="text-indigo-600 dark:text-indigo-400"
           />
         </h1>
         <p className="max-w-lg mb-8 text-base leading-relaxed md:text-lg">
-          시각디자인을 전공하고 디자인 회사에서 4년을 일한 뒤,{' '}
-          <span className="font-medium text-primary">7년째 프론트엔드를 개발</span>하고 있습니다. 디자인을 이해하는
-          눈으로 화면의 완성도를 끝까지 끌어올립니다.
+          시각디자인을 전공하고 디자인 회사에서 4년을 일한 뒤, 7년째 웹 프론트엔드를 만들고 있는{' '}
+          <span className="font-semibold text-primary">윤호준</span>입니다.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-3 md:justify-start">
           <Link className="btn-project" href={MENU_ITEMS.projects.path}>

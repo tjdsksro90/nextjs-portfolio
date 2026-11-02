@@ -31,7 +31,7 @@ const Blog = () => {
   };
 
   return (
-    <div className="max-w-4xl min-h-screen px-5 mx-auto md:px-8">
+    <div className="max-w-6xl min-h-screen px-5 mx-auto md:px-8">
       <Seo title="Blog" />
       <MainTitle
         eyebrow="Writing"

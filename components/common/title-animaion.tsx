@@ -8,9 +8,11 @@ interface Character {
 interface Props {
   text: string;
   className?: string;
+  highlight?: string; // 강조할 단어 (예: '윤호준')
+  highlightClassName?: string; // 강조 단어에 줄 클래스
 }
 
-const TitleAnimaion = ({ text, className }: Props) => {
+const TitleAnimaion = ({ text, className, highlight, highlightClassName = '' }: Props) => {
   const [characters, setCharacters] = useState<Character[]>([]);
   const [visible, setVisible] = useState<boolean[]>([]);
 
@@ -35,6 +37,11 @@ const TitleAnimaion = ({ text, className }: Props) => {
     });
   };
 
+  // 강조 단어의 시작 위치 (없으면 -1)
+  const highlightStart = highlight ? text.indexOf(highlight) : -1;
+  const isHighlighted = (index: number) =>
+    highlightStart !== -1 && index >= highlightStart && index < highlightStart + (highlight?.length ?? 0);
+
   return (
     <span className={className}>
       {characters.map((char, index) =>
@@ -44,7 +51,9 @@ const TitleAnimaion = ({ text, className }: Props) => {
         ) : (
           <span
             key={char.key}
-            className={`${visible[index] ? 'opacity-100' : 'opacity-0'}`}
+            className={`inline-block whitespace-pre ${visible[index] ? 'opacity-100' : 'opacity-0'} ${
+              isHighlighted(index) ? highlightClassName : ''
+            }`}
             style={{
               animation: `fadeIn 0.5s ease-in-out ${0.5 + index * 0.05}s forwards`,
             }}

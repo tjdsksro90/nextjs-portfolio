@@ -1,9 +1,9 @@
 import CommonDescription from '@/components/common/description';
 import CommonImage from '@/components/common/image';
-import CommonLink from '@/components/common/link';
 import CommonPeriod from '@/components/common/period';
 import CommonTags from '@/components/common/tags';
 import CommonTitle from '@/components/common/title';
+import ProjectLinks from '@/components/projects/project-links';
 import { ProjectResultType } from '@/types/projects';
 
 interface Props {
@@ -28,18 +28,39 @@ const PageRender = ({ data }: Props) => {
   const site3 = data.properties.Site3?.url;
 
   return (
-    <div className="container mx-auto">
-      <CommonImage src={imgSrc} wrap="w-[500px] max-w-full border rounded-xl overflow-hidden" />
-      <div className="flex flex-col flex-1 py-4">
-        <CommonTitle title={title} />
-        <CommonDescription description={description} />
-        {site && <CommonLink href={site} text="사이트 링크 바로가기" />}
-        {site2 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
-        {site3 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
-        {github && <CommonLink href={github} text="깃허브 바로가기" />}
-        {youtube && <CommonLink href={github} text="유튜브 시연영상 보러가기" />}
-        <CommonPeriod start={start} end={end} />
-        <CommonTags wrap="flex flex-wrap items-start gap-2 mt-2" tags={tags} />
+    <div className="grid items-start gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12 animate-fade-in">
+      <div className="overflow-hidden surface">
+        <CommonImage src={imgSrc} fill wrap="aspect-[16/10] w-full" />
+      </div>
+      <div className="flex flex-col gap-5">
+        <CommonTitle title={title} className="text-3xl font-bold md:text-4xl" />
+        <CommonDescription description={description} className="text-base md:text-lg" />
+        <dl className="grid gap-4 p-5 text-sm surface">
+          {(start || end) && (
+            <div>
+              <dt className="mb-1.5 eyebrow !text-zinc-400 !text-[11px]">Period</dt>
+              <dd>
+                <CommonPeriod start={start} end={end} className="!text-sm" />
+              </dd>
+            </div>
+          )}
+          {tags.length > 0 && (
+            <div>
+              <dt className="mb-2 eyebrow !text-zinc-400 !text-[11px]">Stack</dt>
+              <dd>
+                <CommonTags wrap="flex flex-wrap gap-1.5" tags={tags} />
+              </dd>
+            </div>
+          )}
+          {(site || site2 || site3 || github || youtube) && (
+            <div>
+              <dt className="mb-2 eyebrow !text-zinc-400 !text-[11px]">Links</dt>
+              <dd>
+                <ProjectLinks site={site} site2={site2} site3={site3} github={github} youtube={youtube} />
+              </dd>
+            </div>
+          )}
+        </dl>
       </div>
     </div>
   );

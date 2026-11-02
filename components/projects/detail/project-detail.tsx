@@ -9,12 +9,11 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
     return <div>프로젝트 데이터를 불러올 수 없습니다.</div>;
   }
 
-  console.log('blocksData', blocksData,'bbb');
 
   return (
     <ul>
       <PageRender key={`page-${pagesData.id}`} data={pagesData} />
-      <div className="w-full h-px my-16 bg-slate-500 dark:bg-slate-50"></div>
+      <div className="w-full h-px my-16 bg-zinc-200 dark:bg-zinc-800"></div>
       {pagesData.properties?.FilesFirst?.files?.length > 0 && (
         <div className="pb-10"></div>
       )}
@@ -22,7 +21,7 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
         <li key={`filesFirstText-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesFirstText.rich_text[0].plain_text}
-            className="my-4 text-base italic"
+            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
           />
         </li>
       )}
@@ -31,7 +30,7 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
         <li key={`filesSlideText-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesSlideText.rich_text[0].plain_text}
-            className="my-4 text-base italic"
+            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
           />
         </li>
       )}
@@ -40,7 +39,7 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
         <li key={`filesSlide2Text-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesSlideText2.rich_text[0].plain_text}
-            className="my-4 text-base italic"
+            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
           />
         </li>
       )}
@@ -49,7 +48,7 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
         <li key={`filesSlide3Text-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesSlideText3.rich_text[0].plain_text}
-            className="my-4 text-base italic"
+            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
           />
         </li>
       )}
@@ -65,7 +64,7 @@ const ProjectDetailComponent = ({ blocksData, pagesData }: ProjectDetailProps) =
         <li key={`filesText-${pagesData.id}`}>
           <CommonText 
             text={pagesData.properties.FilesText.rich_text[0].plain_text}
-            className="my-4 text-base italic"
+            className="pl-4 my-6 text-base border-l-2 border-indigo-400 text-zinc-500 dark:text-zinc-400"
           />
         </li>
       )}

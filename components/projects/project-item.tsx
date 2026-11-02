@@ -4,9 +4,9 @@ import { ProjectResultType } from '@/types/projects';
 import CommonImage from '../common/image';
 import CommonTitle from '../common/title';
 import CommonDescription from '../common/description';
-import CommonLink from '../common/link';
 import CommonPeriod from '../common/period';
 import CommonTags from '../common/tags';
+import ProjectLinks from './project-links';
 import ArrowIcon from '/public/icons/arrow.svg';
 
 interface Props {
@@ -14,7 +14,6 @@ interface Props {
 }
 
 const ProjectItem = ({ data }: Props) => {
-  const id = data.id;
   const title = data.properties.Name.title[0]?.plain_text ?? '';
   const github = data.properties.Github.url ?? '';
   const youtube = data.properties.Youtube.url ?? '';
@@ -26,42 +25,54 @@ const ProjectItem = ({ data }: Props) => {
   const site = data.properties.Site.url ?? '';
   const site2 = data.properties.Site2?.url ?? '';
   const site3 = data.properties.Site3?.url ?? '';
+  const href = `/projects/${encodeURIComponent(title)}`;
 
   return (
-    <div className="project-card">
-      <CommonImage src={imgSrc} className="rounded-t-xl" />
-      <div className="flex flex-col flex-1 p-4">
-        <CommonTitle title={title} />
-        <CommonDescription description={description} />
-        {site && <CommonLink href={site} text="사이트 링크 바로가기" />}
-        {site2 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
-        {site3 && <CommonLink href={site2} text="사이트2 링크 바로가기" />}
-        {github && <CommonLink href={github} text="깃허브 바로가기" />}
-        {youtube && <CommonLink href={github} text="유튜브 시연영상 보러가기" />}
-        <CommonPeriod start={start} end={end} />
-        <CommonTags wrap="flex flex-wrap items-start gap-2 mt-2" tags={tags} />
-        <div className="mt-auto text-right">
-          {title && (
-            <Link
-              className="flex items-center justify-end gap-1 mt-5 font-semibold text-indigo-500"
-              href={`/projects/${encodeURIComponent(title)}`}
-            >
-              <span>자세히 보기</span>
-              <span className="w-5">
-                <ArrowIcon
-                  width="auto"
-                  height="auto"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </span>
-            </Link>
-          )}
-        </div>
+    <article className="group project-card">
+      <div className="overflow-hidden border-b border-zinc-100 dark:border-zinc-800">
+        <CommonImage
+          src={imgSrc}
+          fill
+          wrap="aspect-[16/10] w-full"
+          className="transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+        />
       </div>
-    </div>
+      <div className="flex flex-col flex-1 gap-3 p-5">
+        <CommonPeriod start={start} end={end} />
+        {title ? (
+          <Link href={href} className="text-primary hover:text-primary after:absolute after:inset-0 after:content-['']">
+            <CommonTitle title={title} className="transition-colors group-hover:text-main" />
+          </Link>
+        ) : (
+          <CommonTitle title={title} />
+        )}
+        <CommonDescription description={description} />
+        <CommonTags wrap="flex flex-wrap gap-1.5" tags={tags} />
+        <ProjectLinks
+          site={site}
+          site2={site2}
+          site3={site3}
+          github={github}
+          youtube={youtube}
+          className="relative z-10 pt-1"
+        />
+        {title && (
+          <div className="flex items-center gap-1 pt-3 mt-auto text-sm font-semibold border-t border-zinc-100 text-zinc-500 group-hover:text-main dark:border-zinc-800">
+            <span>자세히 보기</span>
+            <span className="w-4 transition-transform group-hover:translate-x-1">
+              <ArrowIcon
+                width="auto"
+                height="auto"
+                stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+              />
+            </span>
+          </div>
+        )}
+      </div>
+    </article>
   );
 };
 

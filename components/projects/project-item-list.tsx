@@ -28,7 +28,7 @@ const ProjectItemList = () => {
   const renderContent = () => {
     if (columnCount === 1) {
       return (
-        <div className="flex flex-col gap-8 w-full">
+        <div className="flex flex-col gap-6 w-full">
           {projects.map(item => (
             <ProjectItem key={item.id} data={item} />
           ))}
@@ -43,9 +43,9 @@ const ProjectItemList = () => {
     );
 
     return (
-      <div className={`grid ${gridClass} gap-8 w-full`}>
+      <div className={`grid ${gridClass} gap-6 w-full`}>
         {columns.map((columnItems, colIndex) => (
-          <div key={colIndex} className="flex flex-col gap-8">
+          <div key={colIndex} className="flex flex-col gap-6">
             {columnItems.map(item => (
               <ProjectItem key={item.id} data={item} />
             ))}
@@ -60,7 +60,7 @@ const ProjectItemList = () => {
     return (
       <div className="flex justify-center items-center py-20 w-full">
         <div className="w-5/6 lg:max-w-lg lg:w-full md:w-1/2">
-          <Loading size={100} wrap="my-5" />
+          <Loading size={40} wrap="my-5 text-zinc-400" />
         </div>
       </div>
     );
@@ -74,8 +74,8 @@ const ProjectItemList = () => {
       {hasNextPage && (
         <div ref={observerRef} className="flex justify-center py-10 w-full min-h-[50px]">
           {showNextLoading && (
-            <div className="w-32 h-32">
-              <Loading size={100} />
+            <div>
+              <Loading size={32} className="text-zinc-400" />
             </div>
           )}
         </div>

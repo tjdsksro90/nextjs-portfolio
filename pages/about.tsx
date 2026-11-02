@@ -4,9 +4,9 @@ import AboutComponent from '@/components/about/about-component';
 
 const About = () => {
   return (
-    <section className="container min-h-screen px-5 mx-auto text-gray-600 body-font md:px-14">
+    <section className="max-w-6xl min-h-screen px-5 pb-24 mx-auto md:px-8">
       <Seo title="About" />
-      <MainTitle main="About" />
+      <MainTitle eyebrow="About me" main="About" />
       <AboutComponent />
     </section>
   );

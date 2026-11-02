@@ -6,6 +6,7 @@ export const API_ENDPOINTS = {
     ITEM: '/api/list-item',
   },
   IMAGES: '/api/image',
+  BLOG: '/api/blog',
 } as const;
 
 export const NOTION_BASE_URL = 'https://api.notion.com/v1';

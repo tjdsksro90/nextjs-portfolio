@@ -31,9 +31,11 @@ const PageRender = ({ data }: Props) => {
   const site3 = data.properties.Site3?.url;
 
   return (
-    <div className="grid items-start gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12 animate-fade-in">
-      <div className="overflow-hidden surface">
-        <CommonImage src={imgSrc} alt={title ? `${title} 화면` : ''} fill wrap="aspect-[16/10] w-full" />
+    <div className="grid gap-8 lg:grid-cols-[1.4fr_1fr] lg:gap-12 animate-fade-in">
+      {/* 이미지 박스는 최소 16:10, 오른쪽 내용이 더 길면 그 높이까지 늘어나 아래 선을 맞춘다 */}
+      <div className="relative overflow-hidden surface">
+        <div className="aspect-[16/10]" aria-hidden />
+        <CommonImage src={imgSrc} alt={title ? `${title} 화면` : ''} fill wrap="!absolute inset-0" />
       </div>
       <div className="flex flex-col gap-5">
         <CommonTitle as="h1" title={title} className="text-3xl font-bold md:text-4xl" />

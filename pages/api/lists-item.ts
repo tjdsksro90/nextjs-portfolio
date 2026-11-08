@@ -1,5 +1,5 @@
 import { DATABASE_ID } from '@/config';
-import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/config/api';
+import { NOTION_ENDPOINTS, NOTION_HEADERS, VISIBLE_PROJECT_FILTER } from '@/config/api';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const removeUndefined = (obj: any): any => {
@@ -47,9 +47,9 @@ export async function fetchListItemData(title: string) {
     method: 'POST',
     headers: NOTION_HEADERS,
     body: JSON.stringify({
+      // 주소를 직접 입력해도 숨긴 프로젝트는 찾지 못하게
       filter: {
-        property: 'Name',
-        title: { equals: title },
+        and: [{ property: 'Name', title: { equals: title } }, VISIBLE_PROJECT_FILTER],
       },
       page_size: 1,
     }),

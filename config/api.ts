@@ -18,6 +18,12 @@ export const NOTION_HEADERS = {
   Authorization: `Bearer ${TOKEN}`,
 } as const;
 
+// 노션 DB의 hide 체크박스가 켜진 프로젝트(작업 중 등)는 사이트 어디에도 보이지 않게
+export const VISIBLE_PROJECT_FILTER = {
+  property: 'hide',
+  checkbox: { equals: false },
+} as const;
+
 export const NOTION_ENDPOINTS = {
   databaseQuery: (databaseId: string) => `${NOTION_BASE_URL}/databases/${databaseId}/query`,
   blockChildren: (blockId: string) => `${NOTION_BASE_URL}/blocks/${blockId}/children`,

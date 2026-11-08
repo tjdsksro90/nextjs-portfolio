@@ -40,12 +40,14 @@ export interface ProjectDetailType {
   heading_1: { rich_text: BlockText[] };
   heading_2: { rich_text: BlockText[] };
   heading_3: { rich_text: BlockText[] };
+  heading_4?: { rich_text: BlockText[] };
   bulleted_list_item: { rich_text: BlockText[] };
+  numbered_list_item?: { rich_text: BlockText[] };
   paragraph: { rich_text: BlockText[] };
   image: { external: { url: string } };
   table?: { table_width: number; has_column_header: boolean; has_row_header: boolean };
   table_row?: { cells: BlockText[][] };
-  children?: ProjectDetailType[]; // 표의 행처럼 서버에서 미리 불러온 하위 블록
+  children?: ProjectDetailType[]; // 표의 행, 들여쓴 목록처럼 서버에서 미리 불러온 하위 블록
 }
 
 interface ProjectDetailProps {

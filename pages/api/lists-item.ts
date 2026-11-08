@@ -17,6 +17,28 @@ const removeUndefined = (obj: any): any => {
   return obj;
 };
 
+// 하위 페이지·DB는 본문이 아니라서 건너뛴다
+const SKIP_CHILDREN_TYPES = ['child_page', 'child_database'];
+const MAX_DEPTH = 3;
+
+const attachChildren = async (blocks: any[], depth = 1): Promise<void> => {
+  if (depth > MAX_DEPTH) return;
+
+  await Promise.all(
+    blocks
+      .filter(block => block.has_children && !SKIP_CHILDREN_TYPES.includes(block.type))
+      .map(async block => {
+        const res = await fetch(NOTION_ENDPOINTS.blockChildren(block.id), {
+          method: 'GET',
+          headers: NOTION_HEADERS,
+        });
+        const data = await res.json();
+        block.children = data.results ?? [];
+        await attachChildren(block.children, depth + 1);
+      }),
+  );
+};
+
 // 핵심 로직을 독립된 함수로 분리 (SSR에서도 직접 호출할 수 있게 export)
 export async function fetchListItemData(title: string) {
   if (!title) return { blocksData: [], pagesData: null };
@@ -59,19 +81,8 @@ export async function fetchListItemData(title: string) {
   const pagesData = await resPages.json();
   const blocks = blocksData.results ?? [];
 
-  // 표(table) 블록은 행(table_row)이 하위 블록이라 따로 불러와 children에 붙인다
-  await Promise.all(
-    blocks
-      .filter((block: any) => block.type === 'table' && block.has_children)
-      .map(async (block: any) => {
-        const resRows = await fetch(NOTION_ENDPOINTS.blockChildren(block.id), {
-          method: 'GET',
-          headers: NOTION_HEADERS,
-        });
-        const rows = await resRows.json();
-        block.children = rows.results ?? [];
-      }),
-  );
+  // 들여쓴 하위 블록(목록 속 목록, 표의 행 등)은 따로 불러와 children에 붙인다
+  await attachChildren(blocks);
 
   return {
     blocksData: removeUndefined(blocks),

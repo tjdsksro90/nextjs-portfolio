@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import axios from 'axios';
 import { DATABASE_ID } from '@/config';
-import { NOTION_ENDPOINTS, NOTION_HEADERS } from '@/config/api';
+import { NOTION_ENDPOINTS, NOTION_HEADERS, VISIBLE_PROJECT_FILTER } from '@/config/api';
 
 // 테스트용 강제 지연 함수
 // const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       data: isTotalCount
         ? {
             page_size: 100, // 전체 목록 (홈 대표 작업·다음 프로젝트·전체 개수에 사용)
+            filter: VISIBLE_PROJECT_FILTER,
             sorts: [
               {
                 property: 'WorkPeriod',
@@ -32,6 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           }
         : {
             page_size: 5, // 리스트 불러오기 5개씩
+            filter: VISIBLE_PROJECT_FILTER,
             sorts: [
               {
                 property: 'WorkPeriod',

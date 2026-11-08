@@ -58,6 +58,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx: GetServerSideP
     // HTTP 통신 없이 직접 호출하여 데이터 취득
     const { blocksData, pagesData } = await fetchListItemData(title);
 
+    // 없는 프로젝트나 노션에서 hide로 숨긴 프로젝트는 404
+    if (!pagesData) return { notFound: true };
+
     return {
       props: {
         blocksData,

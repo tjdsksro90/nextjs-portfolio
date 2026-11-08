@@ -28,11 +28,27 @@ const renderBlock = (block: ProjectDetailType) => {
           <BlockDetail richText={block.heading_3.rich_text} />
         </h4>
       );
+    case 'heading_4':
+      return (
+        <h5 key={block.id} className={`mt-6 mb-2 text-base sm:text-lg first:mt-0 ${HEADING_CLASS}`}>
+          <BlockDetail richText={block.heading_4?.rich_text ?? []} />
+        </h5>
+      );
     case 'paragraph':
-      return block.paragraph.rich_text.length > 0 ? (
-        <p key={block.id} className={`mb-3 ${TEXT_CLASS}`}>
-          <BlockDetail richText={block.paragraph.rich_text} />
-        </p>
+      return block.paragraph.rich_text.length > 0 || block.children?.length ? (
+        <div key={block.id}>
+          {block.paragraph.rich_text.length > 0 && (
+            <p className={`mb-3 ${TEXT_CLASS}`}>
+              <BlockDetail richText={block.paragraph.rich_text} />
+            </p>
+          )}
+          {/* 문단 아래로 들여쓴 블록 */}
+          {block.children?.length ? (
+            <div className="ml-6">
+              <BlockRender blocks={block.children} />
+            </div>
+          ) : null}
+        </div>
       ) : null;
     case 'table':
       return <BlockDetailTable key={block.id} block={block} />;
@@ -43,27 +59,45 @@ const renderBlock = (block: ProjectDetailType) => {
   }
 };
 
-// 블록 목록 렌더링: 연속된 글머리 기호 항목은 하나의 <ul>로 묶는다
+type ListType = 'bulleted_list_item' | 'numbered_list_item';
+
+const LIST_CLASS: Record<ListType, string> = {
+  bulleted_list_item: 'list-disc',
+  numbered_list_item: 'list-decimal',
+};
+
+// 블록 목록 렌더링: 연속된 같은 종류의 목록 항목은 하나의 <ul>/<ol>로 묶는다
+// 항목 아래로 들여쓴 블록(children)은 그 항목 안에 다시 그린다
 const BlockRender = ({ blocks }: { blocks: ProjectDetailType[] }) => {
   const elements: React.ReactNode[] = [];
   let listItems: ProjectDetailType[] = [];
+  let listType: ListType | null = null;
 
   const flushList = () => {
-    if (listItems.length === 0) return;
+    if (listItems.length === 0 || !listType) return;
+    const ListTag = listType === 'numbered_list_item' ? 'ol' : 'ul';
+    const type = listType;
     elements.push(
-      <ul key={`list-${listItems[0].id}`} className="mb-4 ml-6 space-y-2 list-disc marker:text-indigo-400">
+      <ListTag
+        key={`list-${listItems[0].id}`}
+        className={`mb-4 ml-6 space-y-2 ${LIST_CLASS[type]} marker:text-indigo-400 [&_ol]:mt-2 [&_ol]:mb-0 [&_ul]:mt-2 [&_ul]:mb-0`}
+      >
         {listItems.map(item => (
           <li key={item.id} className={TEXT_CLASS}>
-            <BlockDetail richText={item.bulleted_list_item.rich_text} />
+            <BlockDetail richText={item[type]?.rich_text ?? []} />
+            {item.children?.length ? <BlockRender blocks={item.children} /> : null}
           </li>
         ))}
-      </ul>,
+      </ListTag>,
     );
     listItems = [];
+    listType = null;
   };
 
   blocks.forEach(block => {
-    if (block.type === 'bulleted_list_item') {
+    if (block.type === 'bulleted_list_item' || block.type === 'numbered_list_item') {
+      if (listType && listType !== block.type) flushList();
+      listType = block.type;
       listItems.push(block);
       return;
     }

@@ -79,6 +79,11 @@
     @apply inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors border rounded-full border-zinc-200 text-zinc-700 hover:border-indigo-400 hover:text-indigo-600 dark:border-zinc-800 dark:text-zinc-300 dark:hover:border-indigo-400 dark:hover:text-indigo-400;
   }
 
+  /* 서비스 종료된 링크: 호버해도 색이 바뀌지 않게 (눌리는 것처럼 보이지 않도록) */
+  .chip-link[aria-disabled='true'] {
+    @apply hover:border-zinc-200 hover:text-zinc-700 dark:hover:border-zinc-800 dark:hover:text-zinc-300;
+  }
+
   .project-card {
     @apply relative flex flex-col w-full overflow-hidden transition-all duration-300 bg-white border rounded-2xl border-zinc-200 motion-safe:hover:-translate-y-1 hover:border-zinc-300 hover:shadow-xl hover:shadow-zinc-900/5 dark:bg-zinc-900/40 dark:border-zinc-800 dark:hover:border-zinc-700 dark:hover:shadow-black/40;
   }

@@ -14,8 +14,9 @@ export const calculatedPeriod = (start: string, end: string): string => {
   );
 
   const diffInMs = Math.abs(endDate.getTime() - startDate.getTime());
-  const days = diffInMs / (1000 * 60 * 60 * 24);
+  const days = Math.round(diffInMs / (1000 * 60 * 60 * 24));
   const result = Math.floor(days / 7);
 
-  return result === 0 ? `${days}일` : `${result}주`;
+  // 일 단위는 시작일과 종료일을 모두 센다 (21일~22일 → 2일)
+  return result === 0 ? `${days + 1}일` : `${result}주`;
 };
